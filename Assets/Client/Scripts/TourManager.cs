@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TourManager : MonoBehaviour
 {
+    public GameObject GameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,10 +17,4 @@ public class TourManager : MonoBehaviour
     {
         
     }
-
-    public void OnClick()
-    {
-        Debug.Log("Hello, world!");
-    }
-
 }
