@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<World>
+	<Countries>
+		<Country Name="Турция">
+		  <Transfers>
+			<Transfer Name="Самолет" Description="Круть" Price="100" Image="Airplane.png" Risc="10"/>
+			<Transfer Name="Поезд" Description="Круть" Price="50" Image="Train.png" Risc="10"/>
+		  </Transfers>
+		  <Hotels>
+			<Hotel Name="Пять звезд" Description="Круть" Price="100" Image="NoImage.png" Risc="10"/>
+			<Hotel Name="У бомжа на помойке" Description="Не круть" Price="100" Image="NoImage.png" Risc="10"/>
+		  </Hotels>
+		  <Excursions>
+			<Excursion Name="Пять звезд" Description="Круть" Price="100" Image="NoImage.png" Risc="10"/>
+			<Excursion Name="У бомжа на помойке" Description="Не круть" Price="100" Image="NoImage.png" Risc="10"/>
+		  </Excursions>
+		</Country>
+		<Country Name="Не Турция">
+		  <Transfers>
+			<Transfer Name="Самолет" Description="Круть" Price="100" Image="Airplane.png" Risc="10"/>
+			<Transfer Name="Поезд" Description="Круть" Price="50" Image="Train.png" Risc="10"/>
+		  </Transfers>
+		  <Hotels>
+			<Hotel Name="Пять звезд" Description="Круть" Price="100" Image="NoImage.png" Risc="10"/>
+			<Hotel Name="У бомжа на помойке" Description="Не круть" Price="100" Image="NoImage.png" Risc="10"/>
+		  </Hotels>
+		  <Excursions>
+			<Excursion Name="Пять звезд" Description="Круть" Price="100" Image="NoImage.png" Risc="10"/>
+			<Excursion Name="У бомжа на помойке" Description="Не круть" Price="100" Image="NoImage.png" Risc="10"/>
+		  </Excursions>
+		</Country>
+	</Countries>
+</World>
