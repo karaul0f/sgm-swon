@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<World>
+<Persons>
+<Person Name="Вася Пупкин" Phrase="Отдохнуть бы" PreferredCountries="Турция;Не турция;" Budget="1000" MaxRisc="10" Image="Person1.png"/>
+<Person Name="John Doe" Phrase="Достало все" PreferredCountries="Турция;Не турция;" Budget="1500" MaxRisc="15" Image="Person1.png"/>
+</Persons>
+
+<Country Name="Турция">
+  <Transfers>
+    <Transfer Name="Самолет" Description="Круть" Price="100" Image="Airplane.png" Risc="10"/>
+    <Transfer Name="Поезд" Description="Круть" Price="50" Image="Train.png" Rics="10"/>
+  </Transfers>
+  <Hotels>
+    <Hotel Name="Пять звезд" Description="Круть" Price="100" Image="NoImage.png" Risc="10"/>
+    <Hotel Name="У бомжа на помойке" Description="Не круть" Price="100" Image="NoImage.png" Risc="10"/>
+  </Hotels>
+  <Excursions>
+    <Excursion Name="Пять звезд" Description="Круть" Price="100" Image="NoImage.png" Risc="10"/>
+    <Excursion Name="У бомжа на помойке" Description="Не круть" Price="100" Image="NoImage.png" Risc="10"/>
+  </Excursions>
+</Country>
+<Country Name="Не Турция">
+  <Transfers>
+    <Transfer Name="Самолет" Description="Круть" Price="100" Image="Airplane.png" Risc="10"/>
+    <Transfer Name="Поезд" Description="Круть" Price="50" Image="Train.png" Rics="10"/>
+  </Transfers>
+  <Hotels>
+    <Hotel Name="Пять звезд" Description="Круть" Price="100" Image="NoImage.png" Risc="10"/>
+    <Hotel Name="У бомжа на помойке" Description="Не круть" Price="100" Image="NoImage.png" Risc="10"/>
+  </Hotels>
+  <Excursions>
+    <Excursion Name="Пять звезд" Description="Круть" Price="100" Image="NoImage.png" Risc="10"/>
+    <Excursion Name="У бомжа на помойке" Description="Не круть" Price="100" Image="NoImage.png" Risc="10"/>
+  </Excursions>
+</Country>
+</World>
