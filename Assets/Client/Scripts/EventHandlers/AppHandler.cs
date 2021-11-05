@@ -21,7 +21,7 @@ public class AppHandler : MonoBehaviour
     void OnTabChangedHandler(TabManager.Tab newTabValue)
     {
         gameObject.SetActive(newTabValue == m_targetApplication);
-        for (int i = 1; i < gameObject.transform.childCount; i++)
+        for (int i = 1; i < gameObject.transform.childCount - 2; i++)
         {
             gameObject.transform.GetChild(i).gameObject.SetActive(false);
         }
