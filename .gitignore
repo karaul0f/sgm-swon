@@ -30,3 +30,5 @@ Logs/
 .Trashes
 ehthumbs.db
 Thumbs.db
+*.meta
+/.vs
