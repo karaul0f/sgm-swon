@@ -8,34 +8,14 @@ using UnityEngine;
 public class ExcursionListController : ListController
 {
     // Start is called before the first frame update
-    void Start()
-    {
-        m_tourManager = GameObject.FindWithTag("TourManager");
-        m_countVisualElements = 0;
-        m_tourManagerScript = m_tourManager.GetComponent<TourManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void ClearAll()
-    {
-        foreach (var element in m_elements)
-        {
-            Destroy(element);
-        }
-        m_elements.Clear();
-    }
+    protected sealed override void Start() { base.Start();}
 
     public void UpdateItems()
     {
         ClearAll();
-        foreach (var transfer in m_tourManagerScript.TourConfigurator.AvailableExcursions)
+        foreach (var excursion in m_tourManagerScript.TourConfigurator.AvailableExcursions)
         {
-            CreateElement(transfer.Name);
+            CreateElement(excursion.Name);
         }
     }
 }

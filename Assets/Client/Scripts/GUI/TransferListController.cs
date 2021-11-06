@@ -5,26 +5,13 @@ using UnityEngine;
 public class TransferListController : ListController
 {
     // Start is called before the first frame update
-    void Start()
-    {
-        m_tourManager = GameObject.FindWithTag("TourManager");
-        m_countVisualElements = 0;
-        m_tourManagerScript = m_tourManager.GetComponent<TourManager>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void ClearAll()
-    {
-        foreach (var element in m_elements)
+    protected sealed override void Start() 
+    { 
+        base.Start();
+        foreach (var transfer in m_tourManagerScript.TourConfigurator.AvailableTransfers)
         {
-            Destroy(element);
+            CreateElement(transfer.Name);
         }
-        m_elements.Clear();
     }
 
     public void UpdateItems()
