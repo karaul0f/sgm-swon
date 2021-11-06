@@ -5,11 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Assets.Client.Scripts.Services.Interfaces;
 
-namespace Assets.Client.Scripts.Services.Implementations
+namespace Assets.Client.Scripts.Services.Implementations.Travel
 {
     public class PrimitiveTravelService: ITravelService
     {
-        // TODO: Изменить имплементацию
         private string _test = "test";
     }
 }
