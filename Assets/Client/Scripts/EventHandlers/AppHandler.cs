@@ -6,7 +6,7 @@ public class AppHandler : MonoBehaviour
 {
     private TabManager m_tabManager;
 
-    [SerializeField] private TabManager.Tab m_targetApplication;
+    [SerializeField] private ETab m_targetApplication;
 
     public GameObject GameManager;
 
@@ -18,7 +18,7 @@ public class AppHandler : MonoBehaviour
         OnTabChangedHandler(m_tabManager.CurrentTab);
     }
 
-    void OnTabChangedHandler(TabManager.Tab newTabValue)
+    void OnTabChangedHandler(ETab newTabValue)
     {
         gameObject.SetActive(newTabValue == m_targetApplication);
     }

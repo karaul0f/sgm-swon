@@ -11,6 +11,8 @@ public class TourManager : MonoBehaviour
     private uint m_currentBlockIndex;
     private WorldLoader m_worldLoader;
 
+    private TourConfigurator m_tourConfigurator;
+
     private UnityEvent<GameObject> m_onBlockChanged;
 
     public List<Person> Persons { get { return m_worldLoader.Persons; } }
@@ -18,14 +20,20 @@ public class TourManager : MonoBehaviour
 
     public void OnNextClick()
     {
-        m_currentBlockIndex = (uint) ((m_currentBlockIndex  + 1) % m_blocks.Count);
-        CurrentBlock = m_blocks[(int) m_currentBlockIndex];
+        if (m_currentBlockIndex < (int)m_tourConfigurator.TourCompleteStatus)
+        {
+            m_currentBlockIndex = m_currentBlockIndex + 1;
+            CurrentBlock = m_blocks[(int)m_currentBlockIndex];
+        }
     }
 
     public void OnBackClick()
     {
-        m_currentBlockIndex = (uint)((m_currentBlockIndex - 1) % m_blocks.Count);
-        CurrentBlock = m_blocks[(int)m_currentBlockIndex];
+        if (m_currentBlockIndex > 0)
+        {
+            m_currentBlockIndex = m_currentBlockIndex - 1;
+            CurrentBlock = m_blocks[(int) m_currentBlockIndex];
+        }
     }
 
     public UnityEvent<GameObject> OnBlockChanged
@@ -33,6 +41,17 @@ public class TourManager : MonoBehaviour
         get => m_onBlockChanged;
     }
 
+    /// <summary>
+    /// “екущий блок выбора тура, в котором мы находимс€.
+    /// </summary>
+    public TourConfigurator TourConfigurator
+    {
+        get => m_tourConfigurator;
+    }
+
+    /// <summary>
+    /// “екущий блок выбора тура, в котором мы находимс€.
+    /// </summary>
     public GameObject CurrentBlock
     {
         get => m_currentBlock;
@@ -43,30 +62,27 @@ public class TourManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// “екущий индекс блока тура, в котором мы находимс€.
+    /// </summary>
+    public uint CurrentBlockIndex
+    {
+        get => m_currentBlockIndex;
+    }
+
     void Awake()
     {
         m_worldLoader = gameObject.GetComponent<WorldLoader>();
 
         if (m_onBlockChanged == null)
             m_onBlockChanged = new UnityEvent<GameObject>();
+
+        m_tourConfigurator = new TourConfigurator();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         CurrentBlock = m_blocks[0];
-    }
-
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void Destroy()
-    {
-
     }
 }

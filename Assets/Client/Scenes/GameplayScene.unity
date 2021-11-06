@@ -1392,7 +1392,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf5bc4a98b06e3a48aed8e5ab68665aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ContentPanel: {fileID: 596839456}
+  m_tourManager: {fileID: 1687280799}
   ListItemPrefab: {fileID: 8355638203482431617, guid: 7e992e1b140d55d4badc2b50b42ae034, type: 3}
   ElementDistance: -180
 --- !u!1 &603883319
@@ -1480,7 +1480,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1687280801}
         m_TargetAssemblyTypeName: TourManager, Assembly-CSharp
-        m_MethodName: OnClick
+        m_MethodName: OnBackClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2725,7 +2725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf5bc4a98b06e3a48aed8e5ab68665aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ContentPanel: {fileID: 1133316359}
+  m_tourManager: {fileID: 1687280799}
   ListItemPrefab: {fileID: 8355638203482431617, guid: 7e992e1b140d55d4badc2b50b42ae034, type: 3}
   ElementDistance: -180
 --- !u!1 &1275415681
@@ -3327,7 +3327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf5bc4a98b06e3a48aed8e5ab68665aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ContentPanel: {fileID: 1508725851}
+  m_tourManager: {fileID: 1687280799}
   ListItemPrefab: {fileID: 8355638203482431617, guid: 7e992e1b140d55d4badc2b50b42ae034, type: 3}
   ElementDistance: -180
 --- !u!1 &1521071949
@@ -3747,7 +3747,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89879f38c4e3f0844ab908b73a061d6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GameManager: {fileID: 564948916}
   m_blocks:
   - {fileID: 439784268}
   - {fileID: 478515278}
@@ -4265,8 +4264,9 @@ GameObject:
   - component: {fileID: 2027943492}
   - component: {fileID: 2027943491}
   - component: {fileID: 2027943490}
+  - component: {fileID: 2027943493}
   m_Layer: 5
-  m_Name: Further
+  m_Name: Next
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4338,7 +4338,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1687280801}
         m_TargetAssemblyTypeName: TourManager, Assembly-CSharp
-        m_MethodName: OnClick
+        m_MethodName: OnNextClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4386,6 +4386,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2027943488}
   m_CullTransparentMesh: 1
+--- !u!114 &2027943493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027943488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b28bb0ab42d74a841ad3b3bcc5045993, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_tourManager: {fileID: 1687280799}
 --- !u!1 &2033098670
 GameObject:
   m_ObjectHideFlags: 0
@@ -4513,7 +4526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf5bc4a98b06e3a48aed8e5ab68665aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ContentPanel: {fileID: 2060808730}
+  m_tourManager: {fileID: 1687280799}
   ListItemPrefab: {fileID: 8355638203482431617, guid: 7e992e1b140d55d4badc2b50b42ae034, type: 3}
   ElementDistance: -180
 --- !u!1 &2062162612
