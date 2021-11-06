@@ -8,14 +8,14 @@ using UnityEngine;
 public class ExcursionListController : ListController
 {
     // Start is called before the first frame update
-    protected override void Start() { base.Start(); }
+    protected sealed override void Start() { base.Start();}
 
     public void UpdateItems()
     {
         ClearAll();
-        foreach (var transfer in m_tourManagerScript.TourConfigurator.AvailableExcursions)
+        foreach (var excursion in m_tourManagerScript.TourConfigurator.AvailableExcursions)
         {
-            CreateElement(transfer.Name);
+            CreateElement(excursion.Name);
         }
     }
 }

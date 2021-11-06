@@ -5,22 +5,21 @@ using UnityEngine;
 public class CountryListController : ListController
 {
     // Start is called before the first frame update
-    protected override void Start()
+    protected sealed override void Start()
     {
         base.Start();
-
-        foreach (var county in m_tourManagerScript.TourConfigurator.AvailableCounties)
+        foreach (var country in m_tourManagerScript.TourConfigurator.AvailableCounties)
         {
-            CreateElement(county.Name);
+            CreateElement(country.Name);
         }
     }
 
     public void UpdateItems()
     {
         ClearAll();
-        foreach (var transfer in m_tourManagerScript.TourConfigurator.AvailableCounties)
+        foreach (var country in m_tourManagerScript.TourConfigurator.AvailableCounties)
         {
-           CreateElement(transfer.Name);
+           CreateElement(country.Name);
         }
     }
 }
