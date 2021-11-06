@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Country
 {
-    public List<Transfer>   Transfers { get; set; }
-    public List<Hotel>      Hotels { get; set; }
-    public List<Excursion>  Excursions { get; set; }
+    public Dictionary<string, Transfer>   Transfers { get; set; }
+    public Dictionary<string, Hotel>      Hotels { get; set; }
+    public Dictionary<string, Excursion>  Excursions { get; set; }
     public string Name { get; set; }
 }

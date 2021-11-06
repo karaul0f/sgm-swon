@@ -7,16 +7,15 @@ using UnityEngine;
 
 public class WorldLoader : MonoBehaviour
 {
-    private List<Person> m_persons = new List<Person>();
-    private List<Country> m_countries = new List<Country>();
+    private List<Person> m_persons;
+    private Dictionary<string, Country> m_countries;
 
     public List<Person> Persons { get { return m_persons; } }
-    public List<Country> Countries { get { return m_countries; } }
+    public Dictionary<string, Country> Countries { get { return m_countries; } }
 
     // Start is called before the first frame update
-    void Start()
+    public void Awake()
     {
-
         m_persons =     LoadPersonsFromFile(@"Assets\Client\Resources\Persons.xml");
         m_countries =   LoadCountriesFromFile(@"Assets\Client\Resources\Countries.xml");
     }
@@ -58,9 +57,9 @@ public class WorldLoader : MonoBehaviour
         return persons;
     }
 
-    private List<Country> LoadCountriesFromFile(string filePath)
+    private Dictionary<string, Country> LoadCountriesFromFile(string filePath)
     {
-        List<Country> countries = new List<Country>();
+        Dictionary<string, Country> countries = new Dictionary<string, Country>();
 
         XmlDocument resources = new XmlDocument();
         resources.Load(filePath);
@@ -72,9 +71,9 @@ public class WorldLoader : MonoBehaviour
             {
                 foreach (XmlNode countryNode in xNode.ChildNodes)
                 {
-                    List<Transfer> transfers = new List<Transfer>();
-                    List<Hotel> hotels = new List<Hotel>();
-                    List<Excursion> excursions = new List<Excursion>();
+                    Dictionary<string, Transfer> transfers = new Dictionary<string, Transfer>();
+                    Dictionary<string, Hotel> hotels = new Dictionary<string, Hotel>();
+                    Dictionary<string, Excursion> excursions = new Dictionary<string, Excursion>();
 
                     Country country = new Country();
                     country.Name = countryNode.Attributes.GetNamedItem("Name").Value;
@@ -93,7 +92,7 @@ public class WorldLoader : MonoBehaviour
                                 transfer.Image = transferNode.Attributes.GetNamedItem("Image").Value;
                                 transfer.Risc = transferNode.Attributes.GetNamedItem("Risc").Value;
 
-                                transfers.Add(transfer);
+                                transfers.Add(transfer.Name, transfer);
                             }
                         }
                         if (subCountryNode.Name == "Hotels")
@@ -108,7 +107,7 @@ public class WorldLoader : MonoBehaviour
                                 hotel.Image = hotelNode.Attributes.GetNamedItem("Image").Value;
                                 hotel.Risc = hotelNode.Attributes.GetNamedItem("Risc").Value;
 
-                                hotels.Add(hotel);
+                                hotels.Add(hotel.Name, hotel);
                             }
                         }
                         if (subCountryNode.Name == "Excursions")
@@ -123,7 +122,7 @@ public class WorldLoader : MonoBehaviour
                                 excursion.Image = excursionNode.Attributes.GetNamedItem("Image").Value;
                                 excursion.Risc = excursionNode.Attributes.GetNamedItem("Risc").Value;
 
-                                excursions.Add(excursion);
+                                excursions.Add(excursion.Name, excursion);
                             }
                         }
                     }
@@ -132,7 +131,7 @@ public class WorldLoader : MonoBehaviour
                     country.Hotels = hotels;
                     country.Excursions = excursions;
 
-                    countries.Add(country);
+                    countries.Add(country.Name, country);
                 }
             }
         }
