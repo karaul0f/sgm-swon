@@ -77,7 +77,7 @@ public class TourManager : MonoBehaviour
         if (m_onBlockChanged == null)
             m_onBlockChanged = new UnityEvent<GameObject>();
 
-        m_tourConfigurator = new TourConfigurator();
+        m_tourConfigurator = new TourConfigurator(this);
     }
 
     // Start is called before the first frame update

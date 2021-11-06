@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockHandler : MonoBehaviour
+public class CommonBlockHandler : MonoBehaviour
 {
     [SerializeField] private GameObject m_tourManager;
 

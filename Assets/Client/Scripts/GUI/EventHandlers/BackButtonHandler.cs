@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class NextButtonHandler : MonoBehaviour
+public class BackButtonHandler : MonoBehaviour
 {
+
     [SerializeField] private GameObject m_tourManager;
 
     private TourManager m_tourManagerScript;
@@ -24,7 +25,7 @@ public class NextButtonHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void OnTourStatusChangedHandler(ETourStatus newTourStatus)
@@ -39,6 +40,6 @@ public class NextButtonHandler : MonoBehaviour
 
     void UpdateButton()
     {
-        m_selfButton.interactable = !(m_tourManagerScript.CurrentBlockIndex >= (int)m_tourManagerScript.TourConfigurator.TourCompleteStatus);
+        m_selfButton.interactable = m_tourManagerScript.CurrentBlockIndex > 0;
     }
 }
