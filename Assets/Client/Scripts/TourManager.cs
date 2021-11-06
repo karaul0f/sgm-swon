@@ -19,8 +19,8 @@ public class TourManager : MonoBehaviour
 
     private UnityEvent<GameObject> m_onBlockChanged;
 
-    public List<Person> Persons { get { return m_worldLoader.Persons; } }
-    public Dictionary<string, Country> Countries { get { return m_worldLoader.Countries; } }
+    public IEnumerable<Person> Persons => m_worldLoader.Persons;
+    public IDictionary<string, Country> Countries => m_worldLoader.Countries;
 
     public void OnNextClick()
     {

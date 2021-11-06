@@ -91,10 +91,7 @@ public class TourConfigurator
     /// <summary>
     /// Получить доступные для выбора страны
     /// </summary>
-    public IEnumerable<Country> AvailableCounties
-    {
-        get => m_tourManagerScript.Countries.Values;
-    }
+    public IEnumerable<Country> AvailableCounties => m_tourManagerScript.Countries.Values;
 
     /// <summary>
     /// Получить доступный для выбора трансфер/трансферы
