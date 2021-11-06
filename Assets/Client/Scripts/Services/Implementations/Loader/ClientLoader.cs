@@ -1,22 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Assets.Client.Scripts.Services.Interfaces;
+using System.Xml;
+using Assets.Client.Scripts.Services.Implementations.Loader.Extensions;
 
 namespace Assets.Client.Scripts.Services.Implementations.Loader
 {
     public class ClientLoader: XmlLoaderBase<Person>
     {
+        private const string PersonsNodeName = "Persons";
+
         protected override string InitializeXmlPath()
         {
-            throw new NotImplementedException();
+            return Path.Combine("Assets", "Client", "Resources", "Persons.xml");
         }
 
-        public override IEnumerable<Person> Load()
+        protected override IEnumerable<Person> ExtractData(XmlElement element)
         {
-            throw new NotImplementedException();
+            var firstNode = element.FirstChild;
+
+            if (firstNode.Name != PersonsNodeName && firstNode.HasChildNodes) return null;
+
+            return (from XmlNode personNode in firstNode.ChildNodes
+                where personNode.Attributes != null
+                select personNode.Extract()).ToList();
         }
     }
 }
