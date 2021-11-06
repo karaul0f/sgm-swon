@@ -7,16 +7,15 @@ using UnityEngine;
 
 public class WorldLoader : MonoBehaviour
 {
-    private List<Person> m_persons = new List<Person>();
-    private List<Country> m_countries = new List<Country>();
+    private List<Person> m_persons;
+    private Dictionary<string, Country> m_countries;
 
     public List<Person> Persons { get { return m_persons; } }
-    public List<Country> Countries { get { return m_countries; } }
+    public Dictionary<string, Country> Countries { get { return m_countries; } }
 
     // Start is called before the first frame update
-    void Start()
+    public void Awake()
     {
-
         m_persons =     LoadPersonsFromFile(@"Assets\Client\Resources\Persons.xml");
         m_countries =   LoadCountriesFromFile(@"Assets\Client\Resources\Countries.xml");
     }
@@ -58,9 +57,9 @@ public class WorldLoader : MonoBehaviour
         return persons;
     }
 
-    private List<Country> LoadCountriesFromFile(string filePath)
+    private Dictionary<string, Country> LoadCountriesFromFile(string filePath)
     {
-        List<Country> countries = new List<Country>();
+        Dictionary<string, Country> countries = new Dictionary<string, Country>();
 
         XmlDocument resources = new XmlDocument();
         resources.Load(filePath);
@@ -132,7 +131,7 @@ public class WorldLoader : MonoBehaviour
                     country.Hotels = hotels;
                     country.Excursions = excursions;
 
-                    countries.Add(country);
+                    countries.Add(country.Name, country);
                 }
             }
         }
