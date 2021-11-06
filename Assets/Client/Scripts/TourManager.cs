@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Assets.Client.Scripts.Services.Interfaces;
 using UnityEngine;
+using Zenject;
 using UnityEngine.Events;
 
 public class TourManager : MonoBehaviour
 {
     public List<GameObject> m_blocks;
+
+    private ITravelService _travelService;
 
     private GameObject m_currentBlock;
     private uint m_currentBlockIndex;
@@ -42,7 +46,7 @@ public class TourManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Текущий блок выбора тура, в котором мы находимся.
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     /// </summary>
     public TourConfigurator TourConfigurator
     {
@@ -50,7 +54,7 @@ public class TourManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Текущий блок выбора тура, в котором мы находимся.
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     /// </summary>
     public GameObject CurrentBlock
     {
@@ -63,11 +67,18 @@ public class TourManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Текущий индекс блока тура, в котором мы находимся.
+    /// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
     /// </summary>
     public uint CurrentBlockIndex
     {
         get => m_currentBlockIndex;
+    }
+
+    // TODO: РЈР±СЂР°С‚СЊ Р·Р° РЅРµРЅР°РґРѕР±РЅРѕСЃС‚СЊСЋ. РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ.
+    [Inject]
+    public void Construct(ITravelService travelService)
+    {
+        _travelService = travelService;
     }
 
     void Awake()
