@@ -1,12 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml;
+using Assets.Client.Scripts.Services.Implementations.Loader.Extensions;
 
 namespace Assets.Client.Scripts.Services.Implementations.Loader
 {
     public class CountryLoader: XmlLoaderBase<Country>
     {
+        private const string CountryNodeName = "Countries";
+        private const string TransferNodeName = "Transfers";
+        private const string HotelNodeName = "Hotels";
+        private const string ExcursionNodeName = "Excursions";
+
+        private static readonly IDictionary<string, Func<XmlNode, object>> NodeNameToExtractorMap =
+            new Dictionary<string, Func<XmlNode, object>>
+            {
+                {TransferNodeName, node => node.ExtractTransfer()},
+                {HotelNodeName, node => node.ExtractHotel()},
+                {ExcursionNodeName, node => node.ExtractExcursion()}
+    };
+
+
         protected override string InitializeXmlPath()
         {
             return Path.Combine("Assets", "Client", "Resources", "Countries.xml");
@@ -16,85 +32,74 @@ namespace Assets.Client.Scripts.Services.Implementations.Loader
         {
             var result = new List<Country>();
 
-            foreach (XmlNode xNode in element)
+            var countryNodes = element.Cast<XmlNode>().Where(xNode => xNode.Name == CountryNodeName);
+
+            foreach (var xNode in countryNodes)
             {
-                if (xNode.Name == "Countries")
-                {
-                    foreach (XmlNode countryNode in xNode.ChildNodes)
-                    {
-                        Dictionary<string, Transfer> transfers = new Dictionary<string, Transfer>();
-                        Dictionary<string, Hotel> hotels = new Dictionary<string, Hotel>();
-                        Dictionary<string, Excursion> excursions = new Dictionary<string, Excursion>();
-
-                        Country country = new Country();
-                        country.Name = countryNode.Attributes.GetNamedItem("Name").Value;
-
-                        foreach (XmlNode subCountryNode in countryNode.ChildNodes)
-                        {
-                            if (subCountryNode.Name == "Transfers")
-                            {
-                                foreach (XmlNode transferNode in subCountryNode.ChildNodes)
-                                {
-                                    var transfer = ExtractTransferData(transferNode);
-
-
-                                    transfers.Add(transfer.Name, transfer);
-                                }
-                            }
-                            if (subCountryNode.Name == "Hotels")
-                            {
-                                foreach (XmlNode hotelNode in subCountryNode.ChildNodes)
-                                {
-                                    Hotel hotel = new Hotel();
-
-                                    hotel.Name = hotelNode.Attributes.GetNamedItem("Name").Value;
-                                    hotel.Description = hotelNode.Attributes.GetNamedItem("Description").Value;
-                                    hotel.Price = hotelNode.Attributes.GetNamedItem("Price").Value;
-                                    hotel.Image = hotelNode.Attributes.GetNamedItem("Image").Value;
-                                    hotel.Risc = hotelNode.Attributes.GetNamedItem("Risc").Value;
-
-                                    hotels.Add(hotel.Name, hotel);
-                                }
-                            }
-                            if (subCountryNode.Name == "Excursions")
-                            {
-                                foreach (XmlNode excursionNode in subCountryNode.ChildNodes)
-                                {
-                                    Excursion excursion = new Excursion();
-
-                                    excursion.Name = excursionNode.Attributes.GetNamedItem("Name").Value;
-                                    excursion.Description = excursionNode.Attributes.GetNamedItem("Description").Value;
-                                    excursion.Price = excursionNode.Attributes.GetNamedItem("Price").Value;
-                                    excursion.Image = excursionNode.Attributes.GetNamedItem("Image").Value;
-                                    excursion.Risc = excursionNode.Attributes.GetNamedItem("Risc").Value;
-
-                                    excursions.Add(excursion.Name, excursion);
-                                }
-                            }
-                        }
-
-                        country.Transfers = transfers;
-                        country.Hotels = hotels;
-                        country.Excursions = excursions;
-
-                        result.Add(country);
-                    }
-                }
+                result.AddRange(from XmlNode countryNode in xNode.ChildNodes select ExtractCountry(countryNode));
             }
 
             return result;
         }
 
-        private static Transfer ExtractTransferData(XmlNode transferNode)
+        private Country ExtractCountry(XmlNode node)
         {
-            return new Transfer()
+            var country = new Country
             {
-                Name = transferNode.Attributes.GetNamedItem(nameof(Transfer.Name)).Value,
-                Description = transferNode.Attributes.GetNamedItem(nameof(Transfer.Description)).Value,
-                Price = transferNode.Attributes.GetNamedItem(nameof(Transfer.Price)).Value,
-                Image = transferNode.Attributes.GetNamedItem(nameof(Transfer.Image)).Value,
-                Risc = transferNode.Attributes.GetNamedItem(nameof(Transfer.Risc)).Value
+                Name = node.Attributes.GetNamedItem(nameof(Country.Name)).Value
             };
+
+            foreach (XmlNode subCountryNode in node.ChildNodes)
+            {
+                switch (subCountryNode.Name)
+                {
+                    case TransferNodeName:
+                        _ = country.Transfers = ExtractListOfNodes(subCountryNode)
+                            .Aggregate(new Dictionary<string, Transfer>(), GetTransfers);
+                        break;
+                    case HotelNodeName:
+                        _ = country.Hotels = ExtractListOfNodes(subCountryNode)
+                            .Aggregate(new Dictionary<string, Hotel>(), GetHotels);
+                        break;
+                    case ExcursionNodeName:
+                        _ = country.Excursions = ExtractListOfNodes(subCountryNode)
+                            .Aggregate(new Dictionary<string, Excursion>(), GetExcursions);
+                        break;
+                    default:
+                        continue;
+                }
+            }
+
+            return country;
+        }
+
+        private static Dictionary<string, Transfer> GetTransfers(Dictionary<string, Transfer> transfers, object data)
+        {
+            var transfer = data as Transfer;
+            transfers.Add(transfer.Name, transfer);
+            return transfers;
+        }
+
+        private static Dictionary<string, Hotel> GetHotels(Dictionary<string, Hotel> hotels, object data)
+        {
+            var hotel = data as Hotel;
+            hotels.Add(hotel.Name, hotel);
+            return hotels;
+        }
+
+        private static Dictionary<string, Excursion> GetExcursions(Dictionary<string, Excursion> excursions, object data)
+        {
+            var excursion = data as Excursion;
+            excursions.Add(excursion.Name, excursion);
+            return excursions;
+        }
+
+        private IEnumerable<object> ExtractListOfNodes(XmlNode node)
+        {
+            return !NodeNameToExtractorMap.ContainsKey(node.Name) ? null :
+                (from XmlNode childNode
+                    in node.ChildNodes
+                 select NodeNameToExtractorMap[node.Name](childNode)).ToList();
         }
     }
 }

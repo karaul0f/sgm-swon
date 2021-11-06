@@ -23,7 +23,7 @@ namespace Assets.Client.Scripts.Services.Implementations.Loader
 
             return (from XmlNode personNode in firstNode.ChildNodes
                 where personNode.Attributes != null
-                select personNode.Extract()).ToList();
+                select personNode.ExtractPerson()).ToList();
         }
     }
 }
