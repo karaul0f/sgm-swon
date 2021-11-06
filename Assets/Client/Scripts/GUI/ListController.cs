@@ -41,6 +41,7 @@ public class ListController : MonoBehaviour
 
         return obj;
     }
+
     protected void ClearAll()
     {
         foreach (var element in m_elements)
