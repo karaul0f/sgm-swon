@@ -15,7 +15,7 @@ public class ListController : MonoBehaviour
     protected List<GameObject> m_elements = new List<GameObject>();
 
     // Start is called before the first frame update
-    protected void Start()
+    protected virtual void Start()
     {
         m_tourManager = GameObject.FindWithTag("TourManager");
         m_countVisualElements = 0;
@@ -40,6 +40,14 @@ public class ListController : MonoBehaviour
         m_elements.Add(obj);
 
         return obj;
+    }
+    protected void ClearAll()
+    {
+        foreach (var element in m_elements)
+        {
+            Destroy(element);
+        }
+        m_elements.Clear();
     }
 
 }

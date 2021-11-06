@@ -5,30 +5,14 @@ using UnityEngine;
 public class CountryListController : ListController
 {
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
-        m_countVisualElements = 0;
-        m_tourManagerScript = GameObject.FindGameObjectWithTag("TourManager").GetComponent<TourManager>();
+        base.Start();
 
         foreach (var county in m_tourManagerScript.TourConfigurator.AvailableCounties)
         {
             CreateElement(county.Name);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void ClearAll()
-    {
-        foreach (var element in m_elements)
-        {
-            Destroy(element);
-        }
-        m_elements.Clear();
     }
 
     public void UpdateItems()
