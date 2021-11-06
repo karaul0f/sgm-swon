@@ -5,11 +5,11 @@ using UnityEngine.Events;
 
 public class TabManager : MonoBehaviour
 {
-    [SerializeField] private Tab m_currentTab;
+    [SerializeField] private ETab m_currentTab;
 
-    private UnityEvent<Tab> m_onTabChanged;
+    private UnityEvent<ETab> m_onTabChanged;
 
-    public UnityEvent<Tab> OnTabChanged
+    public UnityEvent<ETab> OnTabChanged
     {
         get => m_onTabChanged;
     }
@@ -17,7 +17,7 @@ public class TabManager : MonoBehaviour
     /// <summary>
     /// Текущая вкладка ноутбука (новости, настройка тура, оценки клиентов)
     /// </summary>
-    public Tab CurrentTab
+    public ETab CurrentTab
     {
         get => m_currentTab;
         private set
@@ -27,26 +27,19 @@ public class TabManager : MonoBehaviour
         }
     }
 
-    public enum Tab
-    {
-        News,
-        Tours,
-        Reviews
-    }
-
     /// <summary>
     ///  Метод для нативной поддержки OnClick из ГУИ
     /// </summary>
     /// <param name="tab"></param>
     public void SetTab(int tab)
     {
-        CurrentTab = (Tab)tab;
+        CurrentTab = (ETab)tab;
     }
 
     void Awake()
     {
         if (m_onTabChanged == null)
-            m_onTabChanged = new UnityEvent<Tab>();
+            m_onTabChanged = new UnityEvent<ETab>();
     }
 
     // Start is called before the first frame update
