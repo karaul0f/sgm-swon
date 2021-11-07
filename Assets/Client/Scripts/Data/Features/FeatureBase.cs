@@ -7,5 +7,6 @@
         public int Price { get; set; }
         public string Image { get; set; }
         public int Risk { get; set; }
+        public string RiskName { get; set; }
     }
 }

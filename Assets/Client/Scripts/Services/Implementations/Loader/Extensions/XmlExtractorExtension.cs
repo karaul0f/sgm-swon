@@ -25,7 +25,8 @@ namespace Assets.Client.Scripts.Services.Implementations.Loader.Extensions
                 Name = node.Attributes.GetNamedItem(nameof(Excursion.Name)).Value,
                 Description = node.Attributes.GetNamedItem(nameof(Excursion.Description)).Value,
                 Price = int.Parse(node.Attributes.GetNamedItem(nameof(Excursion.Price)).Value),
-                Image = node.Attributes.GetNamedItem(nameof(Excursion.Image)).Value,
+                Image = node.Attributes.GetNamedItem(nameof(Excursion.Image))?.Value,
+                RiskName = node.Attributes.GetNamedItem(nameof(Excursion.RiskName))?.Value,
                 Risk = int.Parse(node.Attributes.GetNamedItem(nameof(Excursion.Risk)).Value)
             };
         }
@@ -35,9 +36,10 @@ namespace Assets.Client.Scripts.Services.Implementations.Loader.Extensions
             return new Hotel
             {
                 Name = node.Attributes.GetNamedItem(nameof(Excursion.Name)).Value,
-                Description = node.Attributes.GetNamedItem(nameof(Excursion.Description)).Value,
+                Description = node.Attributes.GetNamedItem(nameof(Excursion.Description))?.Value,
                 Price = int.Parse(node.Attributes.GetNamedItem(nameof(Excursion.Price)).Value),
-                Image = node.Attributes.GetNamedItem(nameof(Excursion.Image)).Value,
+                Image = node.Attributes.GetNamedItem(nameof(Excursion.Image))?.Value,
+                RiskName = node.Attributes.GetNamedItem(nameof(Excursion.RiskName))?.Value,
                 Risk = int.Parse(node.Attributes.GetNamedItem(nameof(Excursion.Risk)).Value)
             };
         }
@@ -49,7 +51,8 @@ namespace Assets.Client.Scripts.Services.Implementations.Loader.Extensions
                 Name = node.Attributes.GetNamedItem(nameof(Excursion.Name)).Value,
                 Description = node.Attributes.GetNamedItem(nameof(Excursion.Description)).Value,
                 Price = int.Parse(node.Attributes.GetNamedItem(nameof(Excursion.Price)).Value),
-                Image = node.Attributes.GetNamedItem(nameof(Excursion.Image)).Value,
+                Image = node.Attributes.GetNamedItem(nameof(Excursion.Image))?.Value,
+                RiskName = node.Attributes.GetNamedItem(nameof(Excursion.RiskName))?.Value,
                 Risk = int.Parse(node.Attributes.GetNamedItem(nameof(Excursion.Risk)).Value)
             };
         }
