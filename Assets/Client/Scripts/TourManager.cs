@@ -74,6 +74,12 @@ public class TourManager : MonoBehaviour
         get => m_currentBlockIndex;
     }
 
+    public void BeginNewTour()
+    {
+        m_tourConfigurator.ResetTourConfiguration();
+        CurrentBlock = m_blocks[0];
+    }
+
     // TODO: Убрать за ненадобностью. Пример использования.
     [Inject]
     public void Construct(ITravelService travelService)

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
@@ -11,12 +12,35 @@ public class TourConfigurator
 {
     private ETourStatus m_tourStatus;
     private UnityEvent<ETourStatus> m_onTourStatusChanged;
+    private UnityEvent<int> m_onCostChanged;
     private TourManager m_tourManagerScript;
     private Tour m_tour;
+    private int m_currentTourCost;
+
+    void RecalculateCost()
+    {
+        int newCostValue = 0;
+
+        if (m_tour != null && m_tour.Hotel != null)
+            newCostValue += Int32.Parse(m_tour.Hotel.Price);
+
+        if (m_tour != null && m_tour.Excursion != null)
+            newCostValue += Int32.Parse(m_tour.Excursion.Price);
+
+        if (m_tour != null && m_tour.Transfer != null)
+            newCostValue += Int32.Parse(m_tour.Transfer.Price);
+
+        CurrentTourCost = newCostValue;
+    }
 
     public UnityEvent<ETourStatus> OnTourStatusChanged
     {
         get => m_onTourStatusChanged;
+    }
+
+    public UnityEvent<int> OnCostChanged
+    {
+        get => m_onCostChanged;
     }
 
     public TourConfigurator(TourManager tourManager)
@@ -26,6 +50,9 @@ public class TourConfigurator
 
         if (m_onTourStatusChanged == null)
             m_onTourStatusChanged = new UnityEvent<ETourStatus>();
+
+        if (m_onCostChanged == null)
+            m_onCostChanged = new UnityEvent<int>();
     }
 
     /// <summary>
@@ -42,6 +69,29 @@ public class TourConfigurator
     }
 
     /// <summary>
+    /// Текущая стоимость тура.
+    /// </summary>
+    public int CurrentTourCost
+    {
+        get => m_currentTourCost;
+        private set
+        {
+            m_currentTourCost = value;
+            m_onCostChanged.Invoke(m_currentTourCost);
+        }
+    }
+
+    /// <summary>
+    /// Начинаем конфигурацию сначала
+    /// </summary>
+    public void ResetTourConfiguration()
+    {
+        m_tour = new Tour();
+        TourCompleteStatus = ETourStatus.NothingSelected;
+        RecalculateCost();
+    }
+
+    /// <summary>
     /// Выбрать страну, в которую отправим.
     /// </summary>
     /// <param name="county"></param>
@@ -49,6 +99,7 @@ public class TourConfigurator
     {
         m_tour.Country = m_tourManagerScript.Countries[county];
         TourCompleteStatus = ETourStatus.CountrySelected;
+        RecalculateCost();
     }
 
     /// <summary>
@@ -59,6 +110,7 @@ public class TourConfigurator
     {
         m_tour.Transfer = m_tourManagerScript.Countries[m_tour.Country.Name].Transfers[transfer];
         TourCompleteStatus = ETourStatus.TransferSelected;
+        RecalculateCost();
     }
 
     /// <summary>
@@ -69,6 +121,7 @@ public class TourConfigurator
     {
         m_tour.Hotel = m_tourManagerScript.Countries[m_tour.Country.Name].Hotels[hotel];
         TourCompleteStatus = ETourStatus.HotelSelected;
+        RecalculateCost();
     }
 
     /// <summary>
@@ -79,6 +132,7 @@ public class TourConfigurator
     {
         m_tour.Excursion = m_tourManagerScript.Countries[m_tour.Country.Name].Excursions[excursion];
         TourCompleteStatus = ETourStatus.Final;
+        RecalculateCost();
     }
 
     public Country SelectedCountry
