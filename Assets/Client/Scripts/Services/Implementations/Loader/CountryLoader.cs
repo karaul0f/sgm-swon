@@ -48,8 +48,8 @@ namespace Assets.Client.Scripts.Services.Implementations.Loader
             var country = new Country
             {
                 Name = node.Attributes.GetNamedItem(nameof(Country.Name)).Value,
-                Description = node.Attributes.GetNamedItem(nameof(Country.Description)).Value,
-                Image = node.Attributes.GetNamedItem(nameof(Country.Image)).Value,
+                Description = node.Attributes.GetNamedItem(nameof(Country.Description))?.Value,
+                Image = node.Attributes.GetNamedItem(nameof(Country.Image))?.Value,
             };
 
             foreach (XmlNode subCountryNode in node.ChildNodes)
