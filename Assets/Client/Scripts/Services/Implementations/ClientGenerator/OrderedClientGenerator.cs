@@ -5,9 +5,9 @@ using Assets.Client.Scripts.Services.Interfaces;
 
 namespace Assets.Client.Scripts.Services.Implementations.ClientGenerator
 {
-    public class OrderedClientGenerator: IClientGenerator
+    public class OrderedClientGenerator: IGenerator<Person>
     {
-        public event EventHandler<Person> ClientChange;
+        public event EventHandler<Person> Change;
 
         private readonly ILoader<Person> _clientLoader;
         private IEnumerable<Person> _allClients;
@@ -20,12 +20,12 @@ namespace Assets.Client.Scripts.Services.Implementations.ClientGenerator
             InitializeClients();
         }
 
-        public Person CurrentClient { get; private set; }
+        public Person Current { get; private set; }
 
-        public void ChangeClient()
+        public void Next()
         {
             var clientList = _allClients as IList<Person>;
-            var currentIndex = clientList?.IndexOf(CurrentClient);
+            var currentIndex = clientList?.IndexOf(Current);
 
             if (!CanGoNext(currentIndex, clientList?.Count))
             {
@@ -46,8 +46,8 @@ namespace Assets.Client.Scripts.Services.Implementations.ClientGenerator
 
         private void UpdateClient(Person client)
         {
-            CurrentClient = client;
-            ClientChange?.Invoke(this, CurrentClient);
+            Current = client;
+            Change?.Invoke(this, Current);
         }
 
         private static bool CanGoNext(int? index, int? length)
