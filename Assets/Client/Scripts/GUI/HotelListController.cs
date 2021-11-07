@@ -11,7 +11,7 @@ public class HotelListController : ListController
         if (m_tourManagerScript.TourConfigurator.AvailableHotels == null)
             return;
 
-        foreach (var country in m_tourManagerScript.TourConfigurator.AvailableHotels)
+        foreach (var hotel in m_tourManagerScript.TourConfigurator.AvailableHotels)
         {
             CreateElement(hotel.Name, hotel.Description, hotel.Price, hotel.Image);
         }
