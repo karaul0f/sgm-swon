@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using Assets.Client.Scripts.Services.Interfaces;
+using JetBrains.Annotations;
+using UnityEngine;
 using Assets.Client.Scripts.Data;
 using UnityEngine.Events;
 
@@ -13,6 +16,7 @@ public class TourConfigurator
     private TourManager m_tourManagerScript;
     private Tour m_tour;
     private int m_currentTourCost;
+    private ITourProvider _tourProvider;
 
     void RecalculateCost()
     {
@@ -40,10 +44,11 @@ public class TourConfigurator
         get => m_onCostChanged;
     }
 
-    public TourConfigurator(TourManager tourManager)
+    public TourConfigurator(TourManager tourManager, ITourProvider tourProvider)
     {
         m_tour = new Tour();
         m_tourManagerScript = tourManager;
+        _tourProvider = tourProvider;
 
         if (m_onTourStatusChanged == null)
             m_onTourStatusChanged = new UnityEvent<ETourStatus>();
@@ -163,7 +168,7 @@ public class TourConfigurator
     /// <summary>
     /// Получить доступные для выбора страны
     /// </summary>
-    public IEnumerable<Country> AvailableCounties => m_tourManagerScript.Countries?.Values;
+    public IEnumerable<Country> AvailableCounties => _tourProvider.GetAvailableCountries();// m_tourManagerScript.Countries?.Values;
 
     /// <summary>
     /// Получить доступный для выбора трансфер/трансферы

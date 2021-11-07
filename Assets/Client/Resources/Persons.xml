@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <World>
 	<Persons>
-		<Person Name="Вася Пупкин" Phrase="Отдохнуть бы" PreferredCountries="Турция;Не турция;" Budget="1000" MaxRisc="10" Image="Person1.png"/>
-		<Person Name="John Doe" Phrase="Достало все" PreferredCountries="Турция;Не турция;" Budget="1500" MaxRisc="15" Image="Person1.png"/>
+		<Person Name="Вася Пупкин" Phrase="Отдохнуть бы" PreferredCountries="Турция;Не турция;" Budget="1000" MaxRisc="10" Image="Client01"/>
+		<Person Name="John Doe" Phrase="Достало все" PreferredCountries="Турция;Не турция;" Budget="1500" MaxRisc="15" Image="Client03"/>
 	</Persons>
 </World>
