@@ -10,6 +10,7 @@ public class TourManager : MonoBehaviour
     public List<GameObject> m_blocks;
 
     private ITravelService _travelService;
+    private ITourProvider _tourProvider;
 
     private GameObject m_currentBlock;
     private uint m_currentBlockIndex;
@@ -76,9 +77,12 @@ public class TourManager : MonoBehaviour
 
     // TODO: Убрать за ненадобностью. Пример использования.
     [Inject]
-    public void Construct(ITravelService travelService)
+    public void Construct(ITravelService travelService, ITourProvider tourProvider)
     {
         _travelService = travelService;
+        _tourProvider = tourProvider;
+
+        var test = _tourProvider.GetAvailableCountries();
     }
 
     void Awake()

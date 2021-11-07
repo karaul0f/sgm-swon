@@ -8,6 +8,6 @@ namespace Assets.Client.Scripts.Services.Interfaces
 {
     public interface ITourProvider
     {
-        IEnumerable<Country> AvailableCountries { get; }
+        IEnumerable<Country> GetAvailableCountries();
     }
 }
