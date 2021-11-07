@@ -15,5 +15,7 @@ namespace Assets.Client.Scripts.Data
         public Dictionary<string, Hotel>      Hotels { get; set; }
         public Dictionary<string, Excursion>  Excursions { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
+        public string Image { get; set; }
     }
 }

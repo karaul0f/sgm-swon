@@ -26,6 +26,7 @@ namespace Assets.Client.Scripts.Services.Implementations.Loader.Extensions
                 Description = node.Attributes.GetNamedItem(nameof(Excursion.Description)).Value,
                 Price = int.Parse(node.Attributes.GetNamedItem(nameof(Excursion.Price)).Value),
                 Image = node.Attributes.GetNamedItem(nameof(Excursion.Image)).Value,
+                RiskName = node.Attributes.GetNamedItem(nameof(Excursion.RiskName)).Value,
                 Risk = int.Parse(node.Attributes.GetNamedItem(nameof(Excursion.Risk)).Value)
             };
         }
@@ -38,6 +39,7 @@ namespace Assets.Client.Scripts.Services.Implementations.Loader.Extensions
                 Description = node.Attributes.GetNamedItem(nameof(Excursion.Description)).Value,
                 Price = int.Parse(node.Attributes.GetNamedItem(nameof(Excursion.Price)).Value),
                 Image = node.Attributes.GetNamedItem(nameof(Excursion.Image)).Value,
+                RiskName = node.Attributes.GetNamedItem(nameof(Excursion.RiskName)).Value,
                 Risk = int.Parse(node.Attributes.GetNamedItem(nameof(Excursion.Risk)).Value)
             };
         }
@@ -50,6 +52,7 @@ namespace Assets.Client.Scripts.Services.Implementations.Loader.Extensions
                 Description = node.Attributes.GetNamedItem(nameof(Excursion.Description)).Value,
                 Price = int.Parse(node.Attributes.GetNamedItem(nameof(Excursion.Price)).Value),
                 Image = node.Attributes.GetNamedItem(nameof(Excursion.Image)).Value,
+                RiskName = node.Attributes.GetNamedItem(nameof(Excursion.RiskName)).Value,
                 Risk = int.Parse(node.Attributes.GetNamedItem(nameof(Excursion.Risk)).Value)
             };
         }
