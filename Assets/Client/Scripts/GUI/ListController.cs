@@ -92,15 +92,12 @@ public class ListController : MonoBehaviour
 
     virtual public void UpdateItems()
     {
-        _personGenerator.Change -= OnPersonChanged;
+       
     }
 
     protected virtual void Destroy()
     {
-        m_tourManager = GameObject.FindWithTag("TourManager");
-        m_countVisualElements = 0;
-        m_tourManagerScript = m_tourManager.GetComponent<TourManager>();
-        _personGenerator.Change += OnPersonChanged;
-        UpdateItems();
+        _personGenerator.Change -= OnPersonChanged;
+        
     }
 }

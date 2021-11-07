@@ -16,8 +16,10 @@ public class BackButtonHandler : MonoBehaviour
         m_tourManagerScript = m_tourManager.GetComponent<TourManager>();
         m_tourManagerScript.TourConfigurator.OnTourStatusChanged.AddListener(OnTourStatusChangedHandler);
         m_tourManagerScript.OnBlockChanged.AddListener(OnBlockChangedHandler);
+        m_tourManagerScript.OnFinishTour.AddListener(OnFinishHandler);
         OnTourStatusChangedHandler(m_tourManagerScript.TourConfigurator.TourCompleteStatus);
-        OnBlockChangedHandler(m_tourManagerScript.CurrentBlock);
+        if(m_tourManagerScript.CurrentBlock != null)
+            OnBlockChangedHandler(m_tourManagerScript.CurrentBlock);
     }
 
     // Update is called once per frame
@@ -36,8 +38,14 @@ public class BackButtonHandler : MonoBehaviour
         UpdateButton();
     }
 
+    void OnFinishHandler()
+    {
+        m_selfButton.interactable = false;
+    }
+
     void UpdateButton()
     {
         m_selfButton.interactable = m_tourManagerScript.CurrentBlockIndex > 0;
     }
+
 }

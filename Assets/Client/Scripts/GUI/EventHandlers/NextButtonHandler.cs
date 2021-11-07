@@ -18,6 +18,7 @@ public class NextButtonHandler : MonoBehaviour
         m_tourManagerScript = m_tourManager.GetComponent<TourManager>();
         m_tourManagerScript.TourConfigurator.OnTourStatusChanged.AddListener(OnTourStatusChangedHandler);
         m_tourManagerScript.OnBlockChanged.AddListener(OnBlockChangedHandler);
+        m_tourManagerScript.OnFinishTour.AddListener(OnFinishHandler);
         OnTourStatusChangedHandler(m_tourManagerScript.TourConfigurator.TourCompleteStatus);
         OnBlockChangedHandler(m_tourManagerScript.CurrentBlock);
     }
@@ -30,19 +31,31 @@ public class NextButtonHandler : MonoBehaviour
 
     void OnTourStatusChangedHandler(ETourStatus newTourStatus)
     {
-        UpdateButton();
+        UpdateButton(newTourStatus);
     }
 
     void OnBlockChangedHandler(GameObject newBlockObject)
     {
-        UpdateButton();
+        UpdateButton(newBlockObject);
     }
 
-    void UpdateButton()
+    void UpdateButton(ETourStatus newTourStatus)
     {
         m_selfButton.interactable = !(m_tourManagerScript.CurrentBlockIndex >= (int)m_tourManagerScript.TourConfigurator.TourCompleteStatus);
         gameObject.SetActive(m_tourManagerScript.CurrentBlock != m_notTargetBlock);
 
+    }
+
+    void UpdateButton(GameObject newBlockObject)
+    {
+        m_selfButton.interactable = !(m_tourManagerScript.CurrentBlockIndex >= (int)m_tourManagerScript.TourConfigurator.TourCompleteStatus);
+        gameObject.SetActive(m_tourManagerScript.CurrentBlock != m_notTargetBlock);
+
+    }
+    void OnFinishHandler()
+    {
+        m_selfButton.interactable = false;
+        gameObject.SetActive(true);
     }
 
     void Destroy()
