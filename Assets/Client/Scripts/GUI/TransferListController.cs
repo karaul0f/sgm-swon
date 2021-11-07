@@ -8,6 +8,10 @@ public class TransferListController : ListController
     protected sealed override void Start() 
     { 
         base.Start();
+        foreach (var transfer in m_tourManagerScript.TourConfigurator.AvailableTransfers)
+        {
+            CreateElement(transfer.Name, transfer.Description, transfer.Price, transfer.Image);
+        }
     }
 
     public override void UpdateItems()
@@ -19,7 +23,7 @@ public class TransferListController : ListController
 
         foreach (var transfer in m_tourManagerScript.TourConfigurator.AvailableTransfers)
         {
-            CreateElement(transfer.Name);
+            CreateElement(transfer.Name, transfer.Description, transfer.Price, transfer.Image);
         }
     }
 }

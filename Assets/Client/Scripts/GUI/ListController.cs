@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 
@@ -37,6 +38,35 @@ public class ListController : MonoBehaviour
             new Vector3(obj.transform.position.x, obj.transform.position.y + ElementDistance * m_elements.Count);
 
         obj.GetComponent<ListItemController>().Name.text = name;
+
+        m_elements.Add(obj);
+
+        return obj;
+    }
+    protected GameObject CreateElement(string name, string description, string price, string imagePath)
+    {
+        byte[] fileData;
+        price = "Цена: " + price + "$";
+        imagePath = @"Assets\Client\Images\UI\" + imagePath;
+
+        GameObject obj = Instantiate<GameObject>(
+            ListItemPrefab, transform);
+
+        obj.transform.position =
+            new Vector3(obj.transform.position.x, obj.transform.position.y + ElementDistance * m_elements.Count);
+
+        obj.GetComponent<ListItemController>().Name.text = name;
+        //obj.GetComponent<ListItemController>().Description.text = description;
+        obj.GetComponent<ListItemController>().Price.text = price;
+
+        if (File.Exists(imagePath))
+        {
+            fileData = File.ReadAllBytes(imagePath);
+            var texture = new Texture2D(2, 2);
+
+            if (texture.LoadImage(fileData))
+                obj.GetComponent<ListItemController>().Icon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0, 0));
+        }
 
         m_elements.Add(obj);
 

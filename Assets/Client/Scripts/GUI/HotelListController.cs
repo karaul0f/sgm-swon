@@ -13,7 +13,7 @@ public class HotelListController : ListController
 
         foreach (var country in m_tourManagerScript.TourConfigurator.AvailableHotels)
         {
-            CreateElement(country.Name);
+            CreateElement(hotel.Name, hotel.Description, hotel.Price, hotel.Image);
         }
     }
 }
