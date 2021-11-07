@@ -32,12 +32,12 @@ public class ListController : MonoBehaviour
     /// <returns></returns>
     protected GameObject CreateElement(string name, bool isSelected = false)
     {
-        return CreateElement(name, "", "", "", isSelected);
+        return CreateElement(name, "", 0, "", isSelected);
     }
-    protected GameObject CreateElement(string name, string description, string price, string imagePath, bool isSelected = false)
+    protected GameObject CreateElement(string name, string description, int price, string imagePath, bool isSelected = false)
     {
         byte[] fileData;
-        price = "Цена: " + price + "$";
+        var priceText = $"Цена: {price}$";
         imagePath = @"Assets\Client\Images\UI\" + imagePath;
 
         GameObject obj = Instantiate<GameObject>(
@@ -48,7 +48,7 @@ public class ListController : MonoBehaviour
 
         obj.GetComponent<ListItemController>().Name.text = name;
         obj.GetComponent<ListItemController>().Description = description;
-        obj.GetComponent<ListItemController>().Price.text = price;
+        obj.GetComponent<ListItemController>().Price.text = priceText;
 
         if (File.Exists(imagePath))
         {
