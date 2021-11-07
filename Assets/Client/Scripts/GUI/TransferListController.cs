@@ -4,7 +4,6 @@ public class TransferListController : ListController
     protected sealed override void Start() 
     { 
         base.Start();
-        CreateElements();
     }
 
     public override void UpdateItems()
