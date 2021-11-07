@@ -11,7 +11,7 @@ namespace Assets.Client.Scripts.Services.Implementations.Loader.Extensions
             {
                 Name = node.Attributes.GetNamedItem(nameof(Person.Name)).Value,
                 Phrase = node.Attributes.GetNamedItem(nameof(Person.Phrase)).Value,
-                PreferredCountries = node.Attributes.GetNamedItem(nameof(Person.PreferredCountries)).Value,
+                PreferredCountries = node.Attributes.GetNamedItem(nameof(Person.PreferredCountries)).Value.TrimEnd(';').Split(';'),
                 Budget = node.Attributes.GetNamedItem(nameof(Person.Budget)).Value,
                 MaxRisc = node.Attributes.GetNamedItem(nameof(Person.MaxRisc)).Value,
                 Image = node.Attributes.GetNamedItem(nameof(Person.Image)).Value
