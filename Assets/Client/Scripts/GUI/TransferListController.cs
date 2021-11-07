@@ -10,7 +10,7 @@ public class TransferListController : ListController
         base.Start();
         foreach (var transfer in m_tourManagerScript.TourConfigurator.AvailableTransfers)
         {
-            CreateElement(transfer.Name);
+            CreateElement(transfer.Name, transfer.Description, transfer.Price, transfer.Image);
         }
     }
 
@@ -19,7 +19,7 @@ public class TransferListController : ListController
         ClearAll();
         foreach (var transfer in m_tourManagerScript.TourConfigurator.AvailableTransfers)
         {
-            CreateElement(transfer.Name);
+            CreateElement(transfer.Name, transfer.Description, transfer.Price, transfer.Image);
         }
     }
 }
