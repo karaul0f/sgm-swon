@@ -24,7 +24,11 @@ namespace Assets.Client.Scripts.Services.Implementations.TourProvider
 
         private IEnumerable<Country> FilterCountries(IEnumerable<Country> source)
         {
-            return source?.Where(country => _clientGenerator.Current.PreferredCountries.Contains(country.Name));
+            return source?
+                .Where(country => 
+                    _clientGenerator.Current.PreferredCountries
+                        .Select(preferredCountry => preferredCountry.ToLower())
+                        .Contains(country.Name.ToLower()));
         }
     }
 }
