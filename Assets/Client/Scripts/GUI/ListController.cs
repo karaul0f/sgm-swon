@@ -1,10 +1,14 @@
 using System.Collections.Generic;
 using System.IO;
+using Assets.Client.Scripts.Data;
+using Assets.Client.Scripts.Services.Interfaces;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class ListController : MonoBehaviour
 {
+    protected IGenerator<Person> _personGenerator;
     protected GameObject m_tourManager;
     protected TourManager m_tourManagerScript;
 
@@ -14,12 +18,24 @@ public class ListController : MonoBehaviour
     protected int m_countVisualElements;
     protected List<GameObject> m_elements = new List<GameObject>();
 
+    [Inject]
+    public void Construct(IGenerator<Person> personGenerator)
+    {
+        _personGenerator = personGenerator;
+    }
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
         m_tourManager = GameObject.FindWithTag("TourManager");
         m_countVisualElements = 0;
         m_tourManagerScript = m_tourManager.GetComponent<TourManager>();
+        _personGenerator.Change += OnPersonChanged;
+        UpdateItems();
+    }
+
+    private void OnPersonChanged(object sender, Person person)
+    {
         UpdateItems();
     }
 
@@ -76,6 +92,15 @@ public class ListController : MonoBehaviour
 
     virtual public void UpdateItems()
     {
-        
+        _personGenerator.Change -= OnPersonChanged;
+    }
+
+    protected virtual void Destroy()
+    {
+        m_tourManager = GameObject.FindWithTag("TourManager");
+        m_countVisualElements = 0;
+        m_tourManagerScript = m_tourManager.GetComponent<TourManager>();
+        _personGenerator.Change += OnPersonChanged;
+        UpdateItems();
     }
 }

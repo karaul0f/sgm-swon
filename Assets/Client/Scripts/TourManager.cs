@@ -78,8 +78,9 @@ public class TourManager : MonoBehaviour
         get => m_currentBlockIndex;
     }
 
-    public void BeginNewTour()
+    public void FinishTour()
     {
+        //_travelService.GetTravelResults();
         m_tourConfigurator.ResetTourConfiguration();
         CurrentBlock = m_blocks[0];
     }

@@ -27,6 +27,7 @@ public class NextClientHandler : MonoBehaviour
     private void OnClickHandler()
     {
         _personGenerator.Next();
+
     }
 
     void Destroy()
