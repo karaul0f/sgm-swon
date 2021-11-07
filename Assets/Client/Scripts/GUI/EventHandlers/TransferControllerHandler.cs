@@ -1,8 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
-
 public class TransferControllerHandler : ItemControllerHandler
 {
     protected override void OnBuyClickHandler()

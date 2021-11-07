@@ -1,8 +1,5 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using JetBrains.Annotations;
-using UnityEngine;
+using Assets.Client.Scripts.Data;
 using UnityEngine.Events;
 
 /// <summary>

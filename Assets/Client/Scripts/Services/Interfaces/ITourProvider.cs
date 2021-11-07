@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Assets.Client.Scripts.Data;
 
 namespace Assets.Client.Scripts.Services.Interfaces
 {

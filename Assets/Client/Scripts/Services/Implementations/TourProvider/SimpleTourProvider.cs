@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Assets.Client.Scripts.Data;
 using Assets.Client.Scripts.Services.Interfaces;
 
 namespace Assets.Client.Scripts.Services.Implementations.TourProvider

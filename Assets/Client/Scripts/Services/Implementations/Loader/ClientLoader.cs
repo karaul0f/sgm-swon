@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Xml;
+using Assets.Client.Scripts.Data;
 using Assets.Client.Scripts.Services.Implementations.Loader.Extensions;
 
 namespace Assets.Client.Scripts.Services.Implementations.Loader
