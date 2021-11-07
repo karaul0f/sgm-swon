@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <World>
 	<Countries>
-		<Country Name="Турция (Стамбул)">
+		<Country Name="Турция (Стамбул)" Image="Турция.png">
 			<Transfers>
 				<Transfer
           Name="Самолет-Бизнес класс"
@@ -132,7 +132,7 @@
         />
 			</Excursions>
 		</Country>
-		<Country Name="Египет (Каир)">
+		<Country Name="Египет (Каир)" Image="Египет.png">
 			<Transfers>
 				<Transfer
           Name="Самолет-Бизнес класс"
@@ -261,7 +261,7 @@
         />
 			</Excursions>
 		</Country>
-		<Country Name="Греция (Афины)">
+		<Country Name="Греция (Афины)" Image="Греция.png">
 			<Transfers>
 				<Transfer
           Name="Самолет-Бизнес класс"
@@ -382,7 +382,7 @@
         />
 			</Excursions>
 		</Country>
-		<Country Name="Таиланд(Ангтхонг)">
+		<Country Name="Таиланд(Ангтхонг)" Image="Таиланд.png">
 			<Transfers>
 				<Transfer
           Name="Самолет-Бизнес класс"
