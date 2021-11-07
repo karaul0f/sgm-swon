@@ -1,3 +1,4 @@
+using Assets.Client.Scripts.Services.Implementations.ClientGenerator;
 using Assets.Client.Scripts.Services.Implementations.GameState;
 using Assets.Client.Scripts.Services.Implementations.Loader;
 using Assets.Client.Scripts.Services.Implementations.TourProvider;
@@ -16,6 +17,7 @@ namespace Assets.Client.Scripts.Installers
             Container.Bind<ILoader<Person>>().To<ClientLoader>().AsSingle();
             Container.Bind<ILoader<Country>>().To<CountryLoader>().AsSingle();
             Container.Bind<ITourProvider>().To<SimpleTourProvider>().AsSingle();
+            Container.Bind<IClientGenerator>().To<OrderedClientGenerator>().AsSingle();
         }
     }
 }

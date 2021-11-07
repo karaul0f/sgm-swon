@@ -9,7 +9,7 @@ namespace Assets.Client.Scripts.Services.Implementations.TourProvider
 {
     public class SimpleTourProvider: ITourProvider
     {
-        private ILoader<Country> _countryLoader;
+        private readonly ILoader<Country> _countryLoader;
 
         public SimpleTourProvider(ILoader<Country> countryLoader)
         {

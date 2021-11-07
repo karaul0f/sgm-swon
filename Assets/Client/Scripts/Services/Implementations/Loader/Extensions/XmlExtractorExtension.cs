@@ -7,7 +7,7 @@ namespace Assets.Client.Scripts.Services.Implementations.Loader.Extensions
     {
         public static Person ExtractPerson(this XmlNode node)
         {
-            return new Person() 
+            return new Person()
             {
                 Name = node.Attributes.GetNamedItem(nameof(Person.Name)).Value,
                 Phrase = node.Attributes.GetNamedItem(nameof(Person.Phrase)).Value,
