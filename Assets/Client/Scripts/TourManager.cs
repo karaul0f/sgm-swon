@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Assets.Client.Scripts.Data;
 using Assets.Client.Scripts.Services.Interfaces;
@@ -90,7 +91,25 @@ public class TourManager : MonoBehaviour
     public void FinishTour()
     {
         var travelResult = _travelService.GetTravelResults(m_tourConfigurator.MakeTour(), _personGenerator.Current);
-        m_messageManager.AddMessage(EMessageType.AboutMessage, travelResult.Message);
+        var capital = m_gameManager.GetComponent<Capital>().Money;
+        m_gameManager.GetComponent<Capital>().Money += travelResult.Reward;
+        string resultText = travelResult.Message;
+        resultText += "\n\nЧто случилось:\n";
+        foreach (var travelResultEvent in travelResult.Events)
+        {
+            if (travelResultEvent.Name != null)
+                resultText += travelResultEvent.Name + '\n';
+        }
+
+        int resultSum = travelResult.Reward - capital;
+        int absResult = Math.Abs(resultSum);
+        resultText += (resultSum) >= 0 ? $"\n Вы заработали: {resultSum}$" : $"\n Вы потеряли: {absResult}";
+        m_messageManager.AddMessage(EMessageType.AboutMessage,
+            resultText);
+
+        
+
+
         m_tourConfigurator.ResetTourConfiguration();
         m_currentBlockIndex = 0;
         CurrentBlock = m_blocks[0];
