@@ -1,7 +1,18 @@
 <?xml version="1.0"?>
 <World>
 	<Persons>
-		<Person Name="Вася Пупкин" Phrase="Отдохнуть бы" PreferredCountries="Турция;Не турция;" Budget="1000" MaxRisc="10" Image="Client01"/>
-		<Person Name="John Doe" Phrase="Достало все" PreferredCountries="Турция;Не турция;" Budget="1500" MaxRisc="15" Image="Client03"/>
-	</Persons>
+		<Person Name="Иван Петров" Phrase="Я могу позволить себе абсолютно любой отдых" PreferredCountries="Турция (Стамбул);Египет (Каир);Греция (Афины);Таиланд(Ангтхонг);" Budget="10000" MaxRisc="10" Image="Client05"/>
+		<Person Name="Владимир Харченко" Phrase="Хотелось бы сбежать о всего и не потратить много денег" PreferredCountries="Турция (Стамбул);Египет (Каир);Греция (Афины);Таиланд(Ангтхонг);" Budget="15000" MaxRisc="15" Image="Client05"/>
+    <Person Name="Ольга Тишкова" Phrase="Я в бегах!!! Помогите!!!" PreferredCountries="Турция (Стамбул);Египет (Каир);Греция (Афины);Таиланд(Ангтхонг);" Budget="15000" MaxRisc="15" Image="Client01"/>
+    <Person Name="Жанна Гриценко" Phrase="Я хочу уехать и найти любовь всей жизни!" PreferredCountries="Турция (Стамбул);Египет (Каир);Греция (Афины);Таиланд(Ангтхонг);" Budget="15000" MaxRisc="15" Image="Client04"/>
+    <Person Name="Артем Голечков" Phrase="Я ищу преключения!" PreferredCountries="Турция (Стамбул);Египет (Каир);Греция (Афины);Таиланд(Ангтхонг);" Budget="12000" MaxRisc="15" Image="Client05"/>
+    <Person Name="Галина Новикова" Phrase="Я устал от жизни, мне нужно развееться" PreferredCountries="Турция (Стамбул);Египет (Каир);Греция (Афины);" Budget="20000" MaxRisc="15" Image="Client04"/>
+    <Person Name="Василий Персиянов" Phrase=" я сказал жене что меня отправляют в командировку" PreferredCountries="Египет (Каир);Греция (Афины);Таиланд(Ангтхонг);;" Budget="1500" MaxRisc="15" Image="Client03"/>
+    <Person Name="Марк Зарецкий" Phrase="Хочу полюбоваться новыми странами и городами, отель мне особо не важен" PreferredCountries="Турция (Стамбул);Египет (Каир);Греция (Афины);Таиланд(Ангтхонг);" Budget="7500" MaxRisc="15" Image="Client05"/>
+    <Person Name="Евгения Уркова" Phrase="Хочу уехать и посетить все возможные тусовки" PreferredCountries="урция (Стамбул);Таиланд(Ангтхонг);" Budget="15000" MaxRisc="15" Image="Client04"/>
+    <Person Name="Олег Шутов" Phrase="Хотелось бы дешево отдохнуть" PreferredCountries="Египет (Каир);Греция (Афины);;" Budget="1500" MaxRisc="15" Image="Client03"/>
+    <Person Name="Александр Воинокв" Phrase="Уезжаю на заработки" PreferredCountries="(Каир);Греция (Афины);Таиланд(Ангтхонг);" Budget="1000" MaxRisc="15" Image="Client03"/>
+    <Person Name="Елизавета Никитина" Phrase="Очень долго копил на отдых" PreferredCountries="Турция (Стамбул);Египет (Каир);" Budget="5000" MaxRisc="15" Image="Client02"/>
+   
+  </Persons>
 </World>
