@@ -16,7 +16,7 @@ public class ExcursionListController : ListController
 
         foreach (var excursion in m_tourManagerScript.TourConfigurator.AvailableExcursions)
         {
-            CreateElement(excursion.Name, excursion.Description, excursion.Price, excursion.Image);
+            CreateElement(excursion.Name, excursion.Description, excursion.Price, excursion.Image, excursion == m_tourManagerScript.TourConfigurator.SelectedExcursion);
         }
     }
 }

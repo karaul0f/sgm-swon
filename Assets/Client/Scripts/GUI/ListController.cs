@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ListController : MonoBehaviour
 {
@@ -29,21 +30,11 @@ public class ListController : MonoBehaviour
     /// </summary>
     /// <param name="name">Заголовок</param>
     /// <returns></returns>
-    protected GameObject CreateElement(string name)
+    protected GameObject CreateElement(string name, bool isSelected = false)
     {
-        GameObject obj = Instantiate<GameObject>(
-            ListItemPrefab, transform);
-
-        obj.transform.position =
-            new Vector3(obj.transform.position.x, obj.transform.position.y + ElementDistance * m_elements.Count);
-
-        obj.GetComponent<ListItemController>().Name.text = name;
-
-        m_elements.Add(obj);
-
-        return obj;
+        return CreateElement(name, "", "", "", isSelected);
     }
-    protected GameObject CreateElement(string name, string description, string price, string imagePath)
+    protected GameObject CreateElement(string name, string description, string price, string imagePath, bool isSelected = false)
     {
         byte[] fileData;
         price = "Цена: " + price + "$";
@@ -56,7 +47,7 @@ public class ListController : MonoBehaviour
             new Vector3(obj.transform.position.x, obj.transform.position.y + ElementDistance * m_elements.Count);
 
         obj.GetComponent<ListItemController>().Name.text = name;
-        //obj.GetComponent<ListItemController>().Description.text = description;
+        obj.GetComponent<ListItemController>().Description = description;
         obj.GetComponent<ListItemController>().Price.text = price;
 
         if (File.Exists(imagePath))
@@ -67,6 +58,9 @@ public class ListController : MonoBehaviour
             if (texture.LoadImage(fileData))
                 obj.GetComponent<ListItemController>().Icon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0, 0));
         }
+
+        if (isSelected)
+            obj.GetComponent<Image>().color = Color.gray;
 
         m_elements.Add(obj);
 
@@ -85,10 +79,5 @@ public class ListController : MonoBehaviour
     virtual public void UpdateItems()
     {
         
-    }
-
-    virtual public void SelectItem(int index)
-    {
-
     }
 }

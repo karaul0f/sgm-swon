@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HotelControllerHandler : ControllerHandler
+public class HotelControllerHandler : ItemControllerHandler
 {
     protected override void OnBuyClickHandler()
     {

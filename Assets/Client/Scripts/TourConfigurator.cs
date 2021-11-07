@@ -81,6 +81,26 @@ public class TourConfigurator
         TourCompleteStatus = ETourStatus.Final;
     }
 
+    public Country SelectedCountry
+    {
+        get => m_tour.Country;
+    }
+
+    public Transfer SelectedTransfer
+    {
+        get => m_tour.Transfer;
+    }
+
+    public Excursion SelectedExcursion
+    {
+        get => m_tour.Excursion;
+    }
+
+    public Hotel SelectedHotel
+    {
+        get => m_tour.Hotel;
+    }
+
     /// <summary>
     /// Выполнить создание тура
     /// </summary>

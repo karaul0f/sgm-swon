@@ -13,7 +13,7 @@ public class HotelListController : ListController
 
         foreach (var hotel in m_tourManagerScript.TourConfigurator.AvailableHotels)
         {
-            CreateElement(hotel.Name, hotel.Description, hotel.Price, hotel.Image);
+            CreateElement(hotel.Name, hotel.Description, hotel.Price, hotel.Image, hotel == m_tourManagerScript.TourConfigurator.SelectedHotel);
         }
     }
 }

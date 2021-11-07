@@ -12,7 +12,8 @@ public class ListItemController : MonoBehaviour
     }
 
     public Image Icon;
-    public Text Name, Description, Price;
+    public Text Name, Price;
+    public string Description;
 
     /// <summary>
     /// Выбран ли текущий элемент

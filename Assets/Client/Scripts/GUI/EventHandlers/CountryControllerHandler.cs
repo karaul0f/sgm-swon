@@ -6,7 +6,7 @@ using UnityEngine.UI;
 /// <summary>
 /// Класс обработки выбора страны
 /// </summary>
-public class CountryControllerHandler : ControllerHandler
+public class CountryControllerHandler : ItemControllerHandler
 {
     protected override void OnBuyClickHandler()
     {
