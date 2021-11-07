@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Assets.Client.Scripts.Data;
 using Assets.Client.Scripts.Services.Interfaces;
 using Newtonsoft.Json;
 using UnityEngine;
