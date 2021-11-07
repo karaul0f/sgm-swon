@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Assets.Client.Scripts.Services.Interfaces
 {
-    public interface IClientGenerator
+    public interface IGenerator<TValue>
     {
-        event EventHandler<Person> ClientChange;
+        event EventHandler<TValue> Change;
 
-        Person CurrentClient { get; }
+        TValue Current { get; }
 
-        void ChangeClient();
+        void Next();
     }
 }
