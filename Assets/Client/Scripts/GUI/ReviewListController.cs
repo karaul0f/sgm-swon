@@ -14,6 +14,15 @@ public class ReviewListController : MonoBehaviour
     protected int m_countVisualElements;
     protected List<GameObject> m_elements = new List<GameObject>();
 
+    private string review1 = "Добрый день! Спешу поделиться впечатлениями от поездки. Все было замечательно, море, солнце, погода) Отели очень понравились! " +
+        "Сервис хороший, парковка бесплатная и охраняемая). В очень живописном месте).";
+    private string review2 = "Добрый день! За последние два года моё самое сильное впечатление осталось от, пожалуй, самого романтического, захватывающего путешествия в морских круизах!" +
+        "Спасибо за увлекательное посещение кухни на лайнере. Работа безупречная! ";
+    private string review3 = "Добрый день! Все было просто ужасно!!! Отель был отвратителен, номера грязные, санузлов нет, на экскурсии чуть не погиб!!!!11! УЖАСНАЯ КОМПАНИЯ! НЕ РЕКОМЕНДУЮ!";
+    private string review4 = "Здравствуйте! Отеля, в который заселила меня турфирма, не существовало( Но алкоэкскурсия была БЕСПОДОБНА!!!!!!";
+    private string review5 = "Чудесно отдохнула в Каире! Отель был средненький, но чистый. Первое впечатление от персонала было удручающим, но вскоре я убедилась, что была не права. " +
+        "Персонал прекрасный, дружелюбный, услужливый!";
+
     // Start is called before the first frame update
     protected virtual void Start()
     {
@@ -61,10 +70,11 @@ public class ReviewListController : MonoBehaviour
     public void UpdateItems()
     {
         ClearAll();
-
-        for (int i = 0; i < 3; i++)
-        {
-            CreateElement("Иван Зай", "Ну ты и лах");
-        }
+        
+        CreateElement("Иван Петров", review1);
+        CreateElement("Ольга Тишкова", review2);
+        CreateElement("Галина Новикова", review3);
+        CreateElement("Марк Зарецкий", review4);
+        CreateElement("Олег Шутов", review5);
     }
 }
