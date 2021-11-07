@@ -8,17 +8,28 @@ namespace Assets.Client.Scripts.Services.Implementations.Travel
 {
     public class PrimitiveTravelService: ITravelService
     {
+        private readonly IDictionary<EClientLifeStatus, string> _messageMap =
+            new Dictionary<EClientLifeStatus, string>()
+            {
+                {EClientLifeStatus.Dead, "Клиент куда-то пропал... Мы не уверены, жив ли он"},
+                {EClientLifeStatus.Healthy, "Добрый день! Спешу поделиться впечатлениями от поездки. Все было замечательно, море, солнце, погода) Отели очень понравились! Сервис хороший, парковка бесплатная и охраняемая). В очень живописном месте). Для уединения и релакса-туда).  Думаю, эта информация будет полезна для последующих туристов) Wi-fi в стандартной категории номеров бесплатный. Успели посмотреть достопримечательности). Многое понравилось). Впечатлений масса, как и фотографий красивых."},
+                {EClientLifeStatus.Injured, "Добрый день! Все было просто ужасно, отель был очень отвратителен, номера грязные, санузлов нет, на экскурсии чуть не погиб!!!!!УЖАСНАЯ КОМПАНИЯ! НЕ РЕКОМЕНДУЮ!"}
+            };
+
         public TravelAftermath GetTravelResults(Tour tourConfiguration, Person victim)
         {
-            return new TravelAftermath()
+            var result =  new TravelAftermath()
             {
                 Client = victim,
                 TourConfiguration = tourConfiguration,
                 Events = GenerateEvents(tourConfiguration),
-                ClientLifeStatus = EClientLifeStatus.Healthy,
-                Message = "Сдохни или умри",
+                ClientLifeStatus = ResolveClientLifeStatus(tourConfiguration, victim),
                 Reward = ComputeReward(tourConfiguration, EClientLifeStatus.Healthy)
             };
+
+            result.Message = _messageMap[result.ClientLifeStatus];
+
+            return result;
         }
 
         private IEnumerable<TravelEvent> GenerateEvents(Tour configuration)
@@ -31,6 +42,19 @@ namespace Assets.Client.Scripts.Services.Implementations.Travel
             };
 
             return result;
+        }
+
+        private EClientLifeStatus ResolveClientLifeStatus(Tour tourConfiguration, Person victim)
+        {
+            var totalRisk = tourConfiguration.Hotel.Risk + tourConfiguration.Excursion.Risk +
+                            tourConfiguration.Transfer.Risk;
+
+            if (totalRisk == 0)
+            {
+                return EClientLifeStatus.Healthy;
+            }
+
+            return totalRisk >= victim.MaxRisc ? EClientLifeStatus.Dead : EClientLifeStatus.Injured;
         }
 
         private static TravelEvent ExtractEvent(FeatureBase hotelData)

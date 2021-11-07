@@ -6,7 +6,7 @@ namespace Assets.Client.Scripts.Data
         public string Phrase { get; set; }
         public string[] PreferredCountries { get; set; }
         public string Budget { get; set; }
-        public string MaxRisc { get; set; }
+        public int MaxRisc { get; set; }
         public string Image { get; set; }
     }
 }
