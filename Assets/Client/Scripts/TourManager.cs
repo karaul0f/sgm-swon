@@ -11,10 +11,13 @@ public class TourManager : MonoBehaviour
 
     private ITravelService _travelService;
     private ITourProvider _tourProvider;
+    private IGenerator<Person> _personGenerator;
 
     private GameObject m_currentBlock;
     private uint m_currentBlockIndex;
     private WorldLoader m_worldLoader;
+
+    private Person m_currentClient;
 
     private TourConfigurator m_tourConfigurator;
 
@@ -83,12 +86,20 @@ public class TourManager : MonoBehaviour
 
     // TODO: Убрать за ненадобностью. Пример использования.
     [Inject]
-    public void Construct(ITravelService travelService, ITourProvider tourProvider)
+    public void Construct(ITravelService travelService, ITourProvider tourProvider, IGenerator<Person> personGenerator)
     {
         _travelService = travelService;
         _tourProvider = tourProvider;
+        _personGenerator = personGenerator;
+
+        m_currentClient = _personGenerator.Current;
 
         var test = _tourProvider.GetAvailableCountries();
+    }
+
+    public Person CurrentClient
+    {
+        get => m_currentClient;
     }
 
     void Awake()
@@ -98,7 +109,7 @@ public class TourManager : MonoBehaviour
         if (m_onBlockChanged == null)
             m_onBlockChanged = new UnityEvent<GameObject>();
 
-        m_tourConfigurator = new TourConfigurator(this);
+        m_tourConfigurator = new TourConfigurator(this, _tourProvider);
     }
 
     // Start is called before the first frame update

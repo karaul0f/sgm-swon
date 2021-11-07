@@ -6,5 +6,6 @@ public enum ETab
 {
     News,
     Tours,
-    Reviews
+    Reviews,
+    AboutClient
 }
