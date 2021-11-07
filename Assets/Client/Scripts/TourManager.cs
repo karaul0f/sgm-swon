@@ -19,8 +19,8 @@ public class TourManager : MonoBehaviour
 
     private UnityEvent<GameObject> m_onBlockChanged;
 
-    public List<Person> Persons { get { return m_worldLoader.Persons; } }
-    public Dictionary<string, Country> Countries { get { return m_worldLoader.Countries; } }
+    public IEnumerable<Person> Persons => m_worldLoader.Persons;
+    public IDictionary<string, Country> Countries => m_worldLoader.Countries;
 
     public void OnNextClick()
     {
@@ -46,7 +46,7 @@ public class TourManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ������� ���� ������ ����, � ������� �� ���������.
+    /// Конфигуратор тура.
     /// </summary>
     public TourConfigurator TourConfigurator
     {
@@ -54,7 +54,7 @@ public class TourManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ������� ���� ������ ����, � ������� �� ���������.
+    /// Текущий блок выбора тура, в котором мы находимся.
     /// </summary>
     public GameObject CurrentBlock
     {
@@ -67,7 +67,7 @@ public class TourManager : MonoBehaviour
     }
 
     /// <summary>
-    /// ������� ������ ����� ����, � ������� �� ���������.
+    /// Текущий индекс блока тура, в котором мы находимся.
     /// </summary>
     public uint CurrentBlockIndex
     {

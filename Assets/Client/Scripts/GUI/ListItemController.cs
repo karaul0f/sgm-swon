@@ -5,18 +5,21 @@ using UnityEngine.UI;
 
 public class ListItemController : MonoBehaviour
 {
-    public Image Icon;
-    public Text Name, Description, Price;
-
-    // Start is called before the first frame update
-    void Start()
+    private bool m_isSelected;
+    void Awake()
     {
-        
+        m_isSelected = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    public Image Icon;
+    public Text Name, Price;
+    public string Description;
+
+    /// <summary>
+    /// Выбран ли текущий элемент
+    /// </summary>
+    public bool IsSelected
     {
-        
+        get => m_isSelected;
     }
 }

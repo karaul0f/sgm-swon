@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -80,6 +81,26 @@ public class TourConfigurator
         TourCompleteStatus = ETourStatus.Final;
     }
 
+    public Country SelectedCountry
+    {
+        get => m_tour.Country;
+    }
+
+    public Transfer SelectedTransfer
+    {
+        get => m_tour.Transfer;
+    }
+
+    public Excursion SelectedExcursion
+    {
+        get => m_tour.Excursion;
+    }
+
+    public Hotel SelectedHotel
+    {
+        get => m_tour.Hotel;
+    }
+
     /// <summary>
     /// Выполнить создание тура
     /// </summary>
@@ -91,17 +112,14 @@ public class TourConfigurator
     /// <summary>
     /// Получить доступные для выбора страны
     /// </summary>
-    public IEnumerable<Country> AvailableCounties
-    {
-        get => m_tourManagerScript.Countries.Values;
-    }
+    public IEnumerable<Country> AvailableCounties => m_tourManagerScript.Countries?.Values;
 
     /// <summary>
     /// Получить доступный для выбора трансфер/трансферы
     /// </summary>
     public IEnumerable<Transfer> AvailableTransfers
     {
-        get => m_tour.Country?.Transfers?.Values;
+        get => m_tour.Country != null ? m_tour.Country.Transfers.Values : null;
     }
 
     /// <summary>
@@ -109,7 +127,7 @@ public class TourConfigurator
     /// </summary>
     public IEnumerable<Hotel> AvailableHotels
     {
-        get => m_tour.Country.Hotels.Values;
+        get => m_tour.Country != null ? m_tour.Country.Hotels.Values : null;
     }
 
     /// <summary>
@@ -117,7 +135,7 @@ public class TourConfigurator
     /// </summary>
     public IEnumerable<Excursion> AvailableExcursions
     {
-        get => m_tour.Country.Excursions.Values;
+        get => m_tour.Country != null ? m_tour.Country.Excursions.Values : null;
     }
 
 }

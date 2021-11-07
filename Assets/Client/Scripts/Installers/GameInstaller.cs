@@ -1,4 +1,5 @@
 using Assets.Client.Scripts.Services.Implementations.GameState;
+using Assets.Client.Scripts.Services.Implementations.Loader;
 using Assets.Client.Scripts.Services.Implementations.Travel;
 using Assets.Client.Scripts.Services.Interfaces;
 using Zenject;
@@ -11,6 +12,8 @@ namespace Assets.Client.Scripts.Installers
         {
             Container.Bind<ITravelService>().To<PrimitiveTravelService>().AsSingle();
             Container.Bind<IGameStateService>().To<FakeGameState>().AsSingle();
+            Container.Bind<ILoader<Person>>().To<ClientLoader>().AsSingle();
+            Container.Bind<ILoader<Country>>().To<CountryLoader>().AsSingle();
         }
     }
 }
