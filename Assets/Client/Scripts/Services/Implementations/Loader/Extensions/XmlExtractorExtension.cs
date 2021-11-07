@@ -1,4 +1,5 @@
-﻿using System.Xml;
+﻿using System;
+using System.Xml;
 using Assets.Client.Scripts.Data;
 
 namespace Assets.Client.Scripts.Services.Implementations.Loader.Extensions
@@ -12,7 +13,7 @@ namespace Assets.Client.Scripts.Services.Implementations.Loader.Extensions
                 Name = node.Attributes.GetNamedItem(nameof(Person.Name)).Value,
                 Phrase = node.Attributes.GetNamedItem(nameof(Person.Phrase)).Value,
                 PreferredCountries = node.Attributes.GetNamedItem(nameof(Person.PreferredCountries)).Value.TrimEnd(';').Split(';'),
-                Budget = node.Attributes.GetNamedItem(nameof(Person.Budget)).Value,
+                Budget = int.Parse(node.Attributes.GetNamedItem(nameof(Person.Budget)).Value),
                 MaxRisc = int.Parse(node.Attributes.GetNamedItem(nameof(Person.MaxRisc)).Value),
                 Image = node.Attributes.GetNamedItem(nameof(Person.Image)).Value
             };

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Assets.Client.Scripts.Data;
 using Assets.Client.Scripts.Services.Interfaces;
@@ -87,10 +88,40 @@ public class TourManager : MonoBehaviour
         get => m_currentBlockIndex;
     }
 
-    public void FinishTour()
+    public void FinishTour(int TourCost)
     {
         var travelResult = _travelService.GetTravelResults(m_tourConfigurator.MakeTour(), _personGenerator.Current);
-        m_messageManager.AddMessage(EMessageType.AboutMessage, travelResult.Message);
+        var capital = m_gameManager.GetComponent<Capital>().Money;
+        int resultSum = travelResult.Reward - TourCost;
+        m_gameManager.GetComponent<Capital>().Money += resultSum;
+
+        if (m_gameManager.GetComponent<Capital>().Money < 0)
+        {
+            m_messageManager.AddMessage(EMessageType.ResultMessage, "Вы полностью разорились!");
+            return;
+        }
+
+        if (m_gameManager.GetComponent<Capital>().Money > 100000)
+        {
+            m_messageManager.AddMessage(EMessageType.ResultMessage, "Вы достаточно богаты. Поздравляем!");
+            return;
+        }
+
+
+
+        string resultText = travelResult.Message;
+        resultText += "\n\nЧто случилось:\n";
+        foreach (var travelResultEvent in travelResult.Events)
+        {
+            if (travelResultEvent.Name != null)
+                resultText += travelResultEvent.Name + '\n';
+        }
+
+        int absResult = Math.Abs(resultSum);
+        resultText += (resultSum) >= 0 ? $"\n Вы заработали: {resultSum}$" : $"\n Вы потеряли: {absResult}";
+        m_messageManager.AddMessage(EMessageType.AboutMessage,
+            resultText);
+
         m_tourConfigurator.ResetTourConfiguration();
         m_currentBlockIndex = 0;
         CurrentBlock = m_blocks[0];

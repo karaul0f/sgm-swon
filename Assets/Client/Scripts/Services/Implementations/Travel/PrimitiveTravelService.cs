@@ -23,11 +23,11 @@ namespace Assets.Client.Scripts.Services.Implementations.Travel
                 Client = victim,
                 TourConfiguration = tourConfiguration,
                 Events = GenerateEvents(tourConfiguration),
-                ClientLifeStatus = ResolveClientLifeStatus(tourConfiguration, victim),
-                Reward = ComputeReward(tourConfiguration, EClientLifeStatus.Healthy)
+                ClientLifeStatus = ResolveClientLifeStatus(tourConfiguration, victim)
             };
 
             result.Message = _messageMap[result.ClientLifeStatus];
+            result.Reward = ComputeReward(victim, result.ClientLifeStatus);
 
             return result;
         }
@@ -66,9 +66,9 @@ namespace Assets.Client.Scripts.Services.Implementations.Travel
             };
         }
 
-        private static int ComputeReward(Tour config, EClientLifeStatus status)
+        private static int ComputeReward(Person config, EClientLifeStatus status)
         {
-            return status == EClientLifeStatus.Dead ? 0 : config.Excursion.Price + config.Hotel.Price + config.Transfer.Price;
+            return status == EClientLifeStatus.Dead ? 0 : config.Budget;
         }
     }
 }
