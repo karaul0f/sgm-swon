@@ -15,10 +15,14 @@ namespace Assets.Client.Scripts.Services.Implementations.Travel
                 TourConfiguration = tourConfiguration,
                 Events = new List<TravelEvent>(),
                 ClientLifeStatus = EClientLifeStatus.Healthy,
-                Message = "Сдохни или умри"
+                Message = "Сдохни или умри",
+                Reward = ComputeReward(tourConfiguration, EClientLifeStatus.Healthy)
             };
         }
 
-
+        private static int ComputeReward(Tour config, EClientLifeStatus status)
+        {
+            return status == EClientLifeStatus.Dead ? 0 : config.Excursion.Price + config.Hotel.Price + config.Transfer.Price;
+        }
     }
 }
