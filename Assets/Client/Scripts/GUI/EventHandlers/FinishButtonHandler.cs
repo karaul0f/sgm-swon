@@ -46,15 +46,14 @@ public class FinishButtonHandler : MonoBehaviour
 
     void UpdateButton()
     {
-        m_selfButton.interactable = m_tourManagerScript.TourConfigurator.TourCompleteStatus == ETourStatus.Final 
-                                    && m_tourManagerScript.TourConfigurator.CurrentTourCost < m_capital.Money;
+        m_selfButton.interactable = m_tourManagerScript.TourConfigurator.TourCompleteStatus == ETourStatus.Final;
 
         gameObject.SetActive(m_tourManagerScript.CurrentBlock == m_targetBlock);
     }
 
     void OnClickHandler()
     {
-        m_tourManagerScript.FinishTour();
+        m_tourManagerScript.FinishTour(m_tourManagerScript.TourConfigurator.CurrentTourCost);
     }
 
     void Destroy()
