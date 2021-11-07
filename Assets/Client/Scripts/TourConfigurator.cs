@@ -160,9 +160,11 @@ public class TourConfigurator
     /// <summary>
     /// Выполнить создание тура
     /// </summary>
-    void CreateTour()
+    public Tour MakeTour()
     {
-
+        var tour = m_tour;
+        ResetTourConfiguration();
+        return tour;
     }
 
     /// <summary>

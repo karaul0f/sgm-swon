@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Assets.Client.Scripts.Data;
+using Assets.Client.Scripts.Data.Features;
 using Assets.Client.Scripts.Services.Enums;
 using Assets.Client.Scripts.Services.Interfaces;
 
@@ -13,10 +14,31 @@ namespace Assets.Client.Scripts.Services.Implementations.Travel
             {
                 Client = victim,
                 TourConfiguration = tourConfiguration,
-                Events = new List<TravelEvent>(),
+                Events = GenerateEvents(tourConfiguration),
                 ClientLifeStatus = EClientLifeStatus.Healthy,
                 Message = "Сдохни или умри",
                 Reward = ComputeReward(tourConfiguration, EClientLifeStatus.Healthy)
+            };
+        }
+
+        private IEnumerable<TravelEvent> GenerateEvents(Tour configuration)
+        {
+            var result = new List<TravelEvent>
+            {
+                ExtractEvent(configuration.Transfer),
+                ExtractEvent(configuration.Hotel),
+                ExtractEvent(configuration.Excursion)
+            };
+
+            return result;
+        }
+
+        private static TravelEvent ExtractEvent(FeatureBase hotelData)
+        {
+            return new TravelEvent()
+            {
+                Name = hotelData.RiskName,
+                Damage = hotelData.Risk
             };
         }
 

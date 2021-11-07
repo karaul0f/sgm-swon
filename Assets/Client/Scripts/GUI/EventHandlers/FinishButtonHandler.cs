@@ -54,7 +54,7 @@ public class FinishButtonHandler : MonoBehaviour
 
     void OnClickHandler()
     {
-        m_tourManagerScript.BeginNewTour();
+        m_tourManagerScript.FinishTour();
     }
 
     void Destroy()

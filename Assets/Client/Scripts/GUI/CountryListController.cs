@@ -15,8 +15,7 @@ public class CountryListController : ListController
 
         foreach (var country in m_tourManagerScript.TourConfigurator.AvailableCounties)
         {
-
-            CreateElement(country.Name, country == m_tourManagerScript.TourConfigurator.SelectedCountry);
+            CreateElement(country.Name, country.Description, 0, country.Image, country == m_tourManagerScript.TourConfigurator.SelectedCountry);
         }
     }
 }

@@ -16,6 +16,9 @@ public class TourManager : MonoBehaviour
     private GameObject m_currentBlock;
     private uint m_currentBlockIndex;
     private WorldLoader m_worldLoader;
+    private GameObject m_gameManager;
+
+    private MessageManager m_messageManager;
 
     private Person m_currentClient;
 
@@ -23,6 +26,7 @@ public class TourManager : MonoBehaviour
 
     private UnityEvent<GameObject> m_onBlockChanged;
 
+    private UnityEvent m_onFinishTour;
     public IEnumerable<Person> Persons => m_worldLoader.Persons;
     public IDictionary<string, Country> Countries => m_worldLoader.Countries;
 
@@ -47,6 +51,11 @@ public class TourManager : MonoBehaviour
     public UnityEvent<GameObject> OnBlockChanged
     {
         get => m_onBlockChanged;
+    }
+
+    public UnityEvent OnFinishTour
+    {
+        get => m_onFinishTour;
     }
 
     /// <summary>
@@ -78,10 +87,15 @@ public class TourManager : MonoBehaviour
         get => m_currentBlockIndex;
     }
 
-    public void BeginNewTour()
+    public void FinishTour()
     {
+        var travelResult = _travelService.GetTravelResults(m_tourConfigurator.MakeTour(), _personGenerator.Current);
+        m_messageManager.AddMessage(EMessageType.AboutMessage, travelResult.Message);
         m_tourConfigurator.ResetTourConfiguration();
+        m_currentBlockIndex = 0;
         CurrentBlock = m_blocks[0];
+        m_onFinishTour.Invoke();
+        _personGenerator.Next();
     }
 
     // TODO: Убрать за ненадобностью. Пример использования.
@@ -109,12 +123,16 @@ public class TourManager : MonoBehaviour
         if (m_onBlockChanged == null)
             m_onBlockChanged = new UnityEvent<GameObject>();
 
+        if (m_onFinishTour == null)
+            m_onFinishTour = new UnityEvent();
+
         m_tourConfigurator = new TourConfigurator(this, _tourProvider);
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         CurrentBlock = m_blocks[0];
+        m_gameManager = GameObject.FindWithTag("GameManager");
+        m_messageManager = m_gameManager.GetComponent<MessageManager>();
     }
 }
