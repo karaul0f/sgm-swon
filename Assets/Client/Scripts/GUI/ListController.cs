@@ -20,6 +20,7 @@ public class ListController : MonoBehaviour
         m_tourManager = GameObject.FindWithTag("TourManager");
         m_countVisualElements = 0;
         m_tourManagerScript = m_tourManager.GetComponent<TourManager>();
+        UpdateItems();
     }
 
     /// <summary>
@@ -51,4 +52,13 @@ public class ListController : MonoBehaviour
         m_elements.Clear();
     }
 
+    virtual public void UpdateItems()
+    {
+        
+    }
+
+    virtual public void SelectItem(int index)
+    {
+
+    }
 }

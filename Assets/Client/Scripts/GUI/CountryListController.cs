@@ -8,15 +8,15 @@ public class CountryListController : ListController
     protected sealed override void Start()
     {
         base.Start();
-        foreach (var country in m_tourManagerScript.TourConfigurator.AvailableCounties)
-        {
-            CreateElement(country.Name);
-        }
     }
 
-    public void UpdateItems()
+    public override void UpdateItems()
     {
         ClearAll();
+
+        if (m_tourManagerScript.TourConfigurator.AvailableCounties == null)
+            return;
+
         foreach (var country in m_tourManagerScript.TourConfigurator.AvailableCounties)
         {
            CreateElement(country.Name);

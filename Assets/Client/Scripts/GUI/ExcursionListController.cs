@@ -7,12 +7,13 @@ using UnityEngine;
 /// </summary>
 public class ExcursionListController : ListController
 {
-    // Start is called before the first frame update
-    protected sealed override void Start() { base.Start();}
-
-    public void UpdateItems()
+    public override void UpdateItems()
     {
         ClearAll();
+
+        if (m_tourManagerScript.TourConfigurator.AvailableExcursions == null)
+            return;
+
         foreach (var excursion in m_tourManagerScript.TourConfigurator.AvailableExcursions)
         {
             CreateElement(excursion.Name);

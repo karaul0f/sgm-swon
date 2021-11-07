@@ -8,15 +8,15 @@ public class TransferListController : ListController
     protected sealed override void Start() 
     { 
         base.Start();
-        foreach (var transfer in m_tourManagerScript.TourConfigurator.AvailableTransfers)
-        {
-            CreateElement(transfer.Name);
-        }
     }
 
-    public void UpdateItems()
+    public override void UpdateItems()
     {
         ClearAll();
+
+        if (m_tourManagerScript.TourConfigurator.AvailableTransfers == null)
+            return;
+
         foreach (var transfer in m_tourManagerScript.TourConfigurator.AvailableTransfers)
         {
             CreateElement(transfer.Name);

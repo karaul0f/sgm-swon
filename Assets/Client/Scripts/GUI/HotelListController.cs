@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class HotelListController : ListController
 {
-    // Start is called before the first frame update
-    protected sealed override void Start() { base.Start(); }
-
-    public void UpdateItems()
+    public override void UpdateItems()
     {
         ClearAll();
-        foreach (var hotel in m_tourManagerScript.TourConfigurator.AvailableHotels)
+
+        if (m_tourManagerScript.TourConfigurator.AvailableHotels == null)
+            return;
+
+        foreach (var country in m_tourManagerScript.TourConfigurator.AvailableHotels)
         {
-            CreateElement(hotel.Name);
+            CreateElement(country.Name);
         }
     }
 }
