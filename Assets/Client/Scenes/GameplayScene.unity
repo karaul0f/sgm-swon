@@ -721,6 +721,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1373616909}
   m_HandleRect: {fileID: 1373616907}
   m_Direction: 2
+  m_Value: 1
   m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
@@ -1182,6 +1183,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
+    m_Alignment: 0
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2036,6 +2038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 737d1f1e5fc8c0249966ea8677c399d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_money: 250
   m_money: 1000
 --- !u!114 &564948919
 MonoBehaviour:
@@ -2362,6 +2365,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
+  m_IsActive: 1
   m_IsActive: 0
 --- !u!224 &601315885
 RectTransform:
@@ -2377,6 +2381,7 @@ RectTransform:
   - {fileID: 482262221}
   - {fileID: 607693886}
   m_Father: {fileID: 764638563}
+  m_RootOrder: 12
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2748,6 +2753,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1506771738}
   m_HandleRect: {fileID: 1506771737}
   m_Direction: 2
+  m_Value: 1
   m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
@@ -3191,6 +3197,7 @@ RectTransform:
   - {fileID: 1608663254}
   - {fileID: 601315885}
   - {fileID: 1158372651}
+  - {fileID: 601315885}
   - {fileID: 305918263}
   - {fileID: 1048075702}
   m_Father: {fileID: 0}
@@ -3784,6 +3791,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1275415684}
   m_HandleRect: {fileID: 1275415682}
   m_Direction: 2
+  m_Value: 1
   m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
@@ -4327,6 +4335,7 @@ RectTransform:
   - {fileID: 1522084215}
   - {fileID: 330957967}
   m_Father: {fileID: 764638563}
+  m_RootOrder: 11
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -7198,6 +7207,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 946494567}
   m_HandleRect: {fileID: 946494565}
   m_Direction: 2
+  m_Value: 1
   m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
