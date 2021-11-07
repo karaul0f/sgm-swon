@@ -1,5 +1,5 @@
 ﻿using System.Xml;
-using Assets.Client.Scripts.Data.Features;
+using Assets.Client.Scripts.Data;
 
 namespace Assets.Client.Scripts.Services.Implementations.Loader.Extensions
 {

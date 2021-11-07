@@ -1,3 +1,4 @@
+using Assets.Client.Scripts.Data;
 using Assets.Client.Scripts.Services.Implementations.ClientGenerator;
 using Assets.Client.Scripts.Services.Implementations.GameState;
 using Assets.Client.Scripts.Services.Implementations.Loader;
