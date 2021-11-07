@@ -10,5 +10,6 @@ namespace Assets.Client.Scripts.Data
         public IEnumerable<TravelEvent> Events { get; set; }
         public EClientLifeStatus ClientLifeStatus { get; set; }
         public string Message { get; set; }
+        public int Reward { get; set; }
     }
 }
