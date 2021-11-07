@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using Assets.Client.Scripts.Data;
 using Assets.Client.Scripts.Services.Interfaces;
 
@@ -64,7 +65,10 @@ namespace Assets.Client.Scripts.Services.Implementations.ClientGenerator
             if (currentIndex == null)
                 return;
 
-            var nextClient = clientList[(int)currentIndex + 1];
+            var random = new Random();
+            var nextClientIndex = random.Next(0, clientList.Count - 1);
+
+            var nextClient = clientList[nextClientIndex];
 
             UpdateClient(nextClient);
         }
