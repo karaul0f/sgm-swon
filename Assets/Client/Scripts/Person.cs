@@ -10,4 +10,5 @@ public class Person
     public string Budget { get; set; }
     public string MaxRisc { get; set; }
     public string Image { get; set; }
+
 }
