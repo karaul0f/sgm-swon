@@ -22,13 +22,13 @@ public class TourConfigurator
         int newCostValue = 0;
 
         if (m_tour != null && m_tour.Hotel != null)
-            newCostValue += Int32.Parse(m_tour.Hotel.Price);
+            newCostValue += m_tour.Hotel.Price;
 
         if (m_tour != null && m_tour.Excursion != null)
-            newCostValue += Int32.Parse(m_tour.Excursion.Price);
+            newCostValue += m_tour.Excursion.Price;
 
         if (m_tour != null && m_tour.Transfer != null)
-            newCostValue += Int32.Parse(m_tour.Transfer.Price);
+            newCostValue += m_tour.Transfer.Price;
 
         CurrentTourCost = newCostValue;
     }
