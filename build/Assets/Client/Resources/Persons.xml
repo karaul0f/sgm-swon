@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<World>
+	<Persons>
+		<Person Name="Иван Петров" Phrase="Отдохнуть бы" PreferredCountries="Турция;Не турция;" Budget="1000" MaxRisc="10" Image="Client01"/>
+		<Person Name="Владимир Харченко" Phrase="Достало все" PreferredCountries="Турция;Не турция;" Budget="1500" MaxRisc="15" Image="Client02"/>
+    <Person Name="Ольга Тишкова" Phrase="Отдохнуть бы" PreferredCountries="Турция;Не турция;" Budget="1000" MaxRisc="10" Image="Client03"/>
+		<Person Name="Жанна Гриценко" Phrase="Достало все" PreferredCountries="Турция;Не турция;" Budget="1500" MaxRisc="15" Image="Client04"/>
+    <Person Name="Артем Голечков" Phrase="Отдохнуть бы" PreferredCountries="Турция;Не турция;" Budget="1000" MaxRisc="10" Image="Person1.png"/>
+		<Person Name="Галина Новикова" Phrase="Достало все" PreferredCountries="Турция;Не турция;" Budget="1500" MaxRisc="15" Image="Person1.png"/>
+    <Person Name="Василий Персиянов" Phrase="Отдохнуть бы" PreferredCountries="Турция;Не турция;" Budget="1000" MaxRisc="10" Image="Person1.png"/>
+		<Person Name="Марк Зарецкий" Phrase="Достало все" PreferredCountries="Турция;Не турция;" Budget="1500" MaxRisc="15" Image="Person1.png"/>
+    <Person Name="Евгения Уркова" Phrase="Отдохнуть бы" PreferredCountries="Турция;Не турция;" Budget="1000" MaxRisc="10" Image="Person1.png"/>
+		<Person Name="Олег Шутов" Phrase="Достало все" PreferredCountries="Турция;Не турция;" Budget="1500" MaxRisc="15" Image="Person1.png"/>
+	<Person Name="Алексвндр Воинокв" Phrase="Отдохнуть бы" PreferredCountries="Турция;Не турция;" Budget="1000" MaxRisc="100" Image="Person1.png"/>
+		<Person Name="Елизавета Никитина" Phrase="Достало все" PreferredCountries="Турция;Не турция;" Budget="1500" MaxRisc="100" Image="Person1.png"/>
+
+</Persons>
+</World>

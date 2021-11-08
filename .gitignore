@@ -30,3 +30,14 @@ Logs/
 .Trashes
 ehthumbs.db
 Thumbs.db
+/.vs
+Assets/Plugins/Zenject/LICENSE.txt
+Assets/Plugins/Zenject/package.json
+Assets/Plugins/Zenject/ReadMe.url
+Assets/Plugins/Zenject/Version.txt
+Assets/Plugins/Zenject/zenject.asmdef
+Assets/Plugins/Zenject/OptionalExtras/*
+Assets/Plugins/Zenject/Source/Zenject.csproj
+UpgradeLog.htm
+ProjectSettings/ProjectVersion.txt
+ProjectSettings/ProjectVersion.txt
