@@ -95,6 +95,19 @@ public class TourManager : MonoBehaviour
         int resultSum = travelResult.Reward - TourCost;
         m_gameManager.GetComponent<Capital>().Money += resultSum;
 
+        string resultText = travelResult.Message;
+        resultText += "\n\nЧто случилось:\n";
+        foreach (var travelResultEvent in travelResult.Events)
+        {
+            if (travelResultEvent.Name != null)
+                resultText += travelResultEvent.Name + '\n';
+        }
+        
+        int absResult = Math.Abs(resultSum);
+        resultText += (resultSum) >= 0 ? $"\n Вы заработали: {resultSum}$" : $"\n Вы потеряли: {absResult}";
+        m_messageManager.AddMessage(EMessageType.AboutMessage,
+            resultText);
+
         if (m_gameManager.GetComponent<Capital>().Money < 0)
         {
             m_messageManager.AddMessage(EMessageType.ResultMessage, "Вы полностью разорились!");
@@ -107,20 +120,6 @@ public class TourManager : MonoBehaviour
             return;
         }
 
-
-
-        string resultText = travelResult.Message;
-        resultText += "\n\nЧто случилось:\n";
-        foreach (var travelResultEvent in travelResult.Events)
-        {
-            if (travelResultEvent.Name != null)
-                resultText += travelResultEvent.Name + '\n';
-        }
-
-        int absResult = Math.Abs(resultSum);
-        resultText += (resultSum) >= 0 ? $"\n Вы заработали: {resultSum}$" : $"\n Вы потеряли: {absResult}";
-        m_messageManager.AddMessage(EMessageType.AboutMessage,
-            resultText);
 
         m_tourConfigurator.ResetTourConfiguration();
         m_currentBlockIndex = 0;

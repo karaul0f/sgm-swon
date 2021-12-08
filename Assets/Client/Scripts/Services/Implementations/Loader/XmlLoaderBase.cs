@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Xml;
 using Assets.Client.Scripts.Services.Interfaces;
+using UnityEngine;
 
 namespace Assets.Client.Scripts.Services.Implementations.Loader
 {
@@ -30,7 +31,8 @@ namespace Assets.Client.Scripts.Services.Implementations.Loader
         private void UpdateCache()
         {
             var resources = new XmlDocument();
-            resources.Load(_path);
+            TextAsset file = (TextAsset)Resources.Load(_path);
+            resources.LoadXml(file.text);
 
             var xRoot = resources.DocumentElement;
 

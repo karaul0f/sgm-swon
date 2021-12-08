@@ -50,9 +50,8 @@ public class ListController : MonoBehaviour
     }
     protected GameObject CreateElement(string name, string description, int price, string imagePath, bool isSelected = false)
     {
-        byte[] fileData;
         var priceText = $"Цена: {price}$";
-        imagePath = @"Assets\Client\Images\UI\" + imagePath;
+        imagePath = @"Images/" + Path.GetFileNameWithoutExtension(imagePath);
 
         GameObject obj = Instantiate<GameObject>(
             ListItemPrefab, transform);
@@ -64,14 +63,8 @@ public class ListController : MonoBehaviour
         obj.GetComponent<ListItemController>().Description = description;
         obj.GetComponent<ListItemController>().Price.text = priceText;
 
-        if (File.Exists(imagePath))
-        {
-            fileData = File.ReadAllBytes(imagePath);
-            var texture = new Texture2D(2, 2);
-
-            if (texture.LoadImage(fileData))
-                obj.GetComponent<ListItemController>().Icon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0, 0));
-        }
+        var texture = Resources.Load<Texture2D>(imagePath);
+        obj.GetComponent<ListItemController>().Icon.sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), new Vector2(0, 0));
 
         if (isSelected)
             obj.GetComponent<Image>().color = Color.gray;

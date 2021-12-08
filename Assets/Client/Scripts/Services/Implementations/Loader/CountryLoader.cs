@@ -26,7 +26,7 @@ namespace Assets.Client.Scripts.Services.Implementations.Loader
 
         protected override string InitializeXmlPath()
         {
-            return Path.Combine("Assets", "Client", "Resources", "Countries.xml");
+            return "Countries";
         }
 
         protected override IEnumerable<Country> ExtractData(XmlElement element)

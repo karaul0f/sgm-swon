@@ -13,7 +13,7 @@ namespace Assets.Client.Scripts.Services.Implementations.Loader
 
         protected override string InitializeXmlPath()
         {
-            return Path.Combine("Assets", "Client", "Resources", "Persons.xml");
+            return "Persons";
         }
 
         protected override IEnumerable<Person> ExtractData(XmlElement element)
